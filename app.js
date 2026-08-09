@@ -230,6 +230,39 @@ function getHighPriorityTasksSummary() {
   return { count: 0, taskIds: [] };
 }
 
+function getTaskHealthScore() {
+  try {
+    if (fs.existsSync(tasksFile)) {
+      const tasks = JSON.parse(fs.readFileSync(tasksFile, 'utf8'));
+      if (Array.isArray(tasks) && tasks.length > 0) {
+        const completionStats = getTaskCompletionRate();
+        const overdueStats = getOverdueTasksSummary();
+        const dueDateStats = getTaskDueDateCoverage();
+
+        const activeCount = tasks.length - completionStats.completed;
+        const nonOverdueActiveCount = Math.max(0, activeCount - overdueStats.count);
+        const onTimeRate = activeCount > 0 ? (nonOverdueActiveCount / activeCount) * 100 : 100;
+
+        const score = Math.round(
+          (completionStats.ratePercentage * 0.4) +
+          (onTimeRate * 0.4) +
+          (dueDateStats.coveragePercentage * 0.2)
+        );
+
+        return {
+          score: Math.min(100, Math.max(0, score)),
+          completionFactor: completionStats.ratePercentage,
+          onTimeFactor: Math.round(onTimeRate),
+          coverageFactor: dueDateStats.coveragePercentage
+        };
+      }
+    }
+  } catch (err) {
+    console.error('Error calculating task health score:', err);
+  }
+  return { score: 100, completionFactor: 0, onTimeFactor: 100, coverageFactor: 0 };
+}
+
 function formatHealthReport() {
   const isHealthy = runStartupChecks();
   return {
@@ -245,7 +278,8 @@ function formatHealthReport() {
     upcoming: getUpcomingTasksSummary(),
     ageDistribution: getTaskAgeDistribution(),
     dueDateCoverage: getTaskDueDateCoverage(),
-    highPriorityActive: getHighPriorityTasksSummary()
+    highPriorityActive: getHighPriorityTasksSummary(),
+    healthScore: getTaskHealthScore()
   };
 }
 
@@ -288,6 +322,8 @@ function runStartupChecks() {
       console.log(`📅 Due Date Coverage: ${dueDateStats.coveragePercentage}% (${dueDateStats.withDueDate}/${dueDateStats.total} tasks)`);
       const highPriorityStats = getHighPriorityTasksSummary();
       console.log(`⚡ High Priority Active Tasks: ${highPriorityStats.count}`);
+      const healthScoreStats = getTaskHealthScore();
+      console.log(`🏥 Task Health Score: ${healthScoreStats.score}/100`);
     } catch (e) {
       console.log("❌ Tasks file exists but has invalid JSON content.");
       isHealthy = false;
@@ -328,7 +364,7 @@ if (require.main === module) {
   runStartupChecks();
 }
 
-module.exports = { runStartupChecks, getSystemInfo, getAppVersion, validateTaskSchema, formatHealthReport, getTaskStatistics, getTaskPriorityBreakdown, getTaskCategoryBreakdown, getOverdueTasksSummary, getTaskCompletionRate, getUpcomingTasksSummary, getTaskAgeDistribution, getTaskDueDateCoverage, getHighPriorityTasksSummary };
+module.exports = { runStartupChecks, getSystemInfo, getAppVersion, validateTaskSchema, formatHealthReport, getTaskStatistics, getTaskPriorityBreakdown, getTaskCategoryBreakdown, getOverdueTasksSummary, getTaskCompletionRate, getUpcomingTasksSummary, getTaskAgeDistribution, getTaskDueDateCoverage, getHighPriorityTasksSummary, getTaskHealthScore };
 
 
 
