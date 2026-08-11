@@ -263,6 +263,36 @@ function getTaskHealthScore() {
   return { score: 100, completionFactor: 0, onTimeFactor: 100, coverageFactor: 0 };
 }
 
+function getTaskWorkloadSummary() {
+  try {
+    if (fs.existsSync(tasksFile)) {
+      const tasks = JSON.parse(fs.readFileSync(tasksFile, 'utf8'));
+      if (Array.isArray(tasks)) {
+        const activeTasks = tasks.filter(task => task && task.status !== 'done');
+        const byPriority = { high: 0, medium: 0, low: 0, unspecified: 0 };
+        const byCategory = {};
+
+        activeTasks.forEach(task => {
+          const priority = (task && task.priority && Object.prototype.hasOwnProperty.call(byPriority, task.priority)) ? task.priority : 'unspecified';
+          byPriority[priority]++;
+
+          const category = (task && typeof task.category === 'string' && task.category.trim()) ? task.category.trim() : 'Uncategorized';
+          byCategory[category] = (byCategory[category] || 0) + 1;
+        });
+
+        return {
+          totalActive: activeTasks.length,
+          byPriority,
+          byCategory
+        };
+      }
+    }
+  } catch (err) {
+    console.error('Error calculating task workload summary:', err);
+  }
+  return { totalActive: 0, byPriority: { high: 0, medium: 0, low: 0, unspecified: 0 }, byCategory: {} };
+}
+
 function formatHealthReport() {
   const isHealthy = runStartupChecks();
   return {
@@ -279,7 +309,8 @@ function formatHealthReport() {
     ageDistribution: getTaskAgeDistribution(),
     dueDateCoverage: getTaskDueDateCoverage(),
     highPriorityActive: getHighPriorityTasksSummary(),
-    healthScore: getTaskHealthScore()
+    healthScore: getTaskHealthScore(),
+    workload: getTaskWorkloadSummary()
   };
 }
 
@@ -324,6 +355,8 @@ function runStartupChecks() {
       console.log(`⚡ High Priority Active Tasks: ${highPriorityStats.count}`);
       const healthScoreStats = getTaskHealthScore();
       console.log(`🏥 Task Health Score: ${healthScoreStats.score}/100`);
+      const workloadStats = getTaskWorkloadSummary();
+      console.log(`📋 Active Workload: ${workloadStats.totalActive} tasks (${workloadStats.byPriority.high} high priority)`);
     } catch (e) {
       console.log("❌ Tasks file exists but has invalid JSON content.");
       isHealthy = false;
@@ -364,7 +397,7 @@ if (require.main === module) {
   runStartupChecks();
 }
 
-module.exports = { runStartupChecks, getSystemInfo, getAppVersion, validateTaskSchema, formatHealthReport, getTaskStatistics, getTaskPriorityBreakdown, getTaskCategoryBreakdown, getOverdueTasksSummary, getTaskCompletionRate, getUpcomingTasksSummary, getTaskAgeDistribution, getTaskDueDateCoverage, getHighPriorityTasksSummary, getTaskHealthScore };
+module.exports = { runStartupChecks, getSystemInfo, getAppVersion, validateTaskSchema, formatHealthReport, getTaskStatistics, getTaskPriorityBreakdown, getTaskCategoryBreakdown, getOverdueTasksSummary, getTaskCompletionRate, getUpcomingTasksSummary, getTaskAgeDistribution, getTaskDueDateCoverage, getHighPriorityTasksSummary, getTaskHealthScore, getTaskWorkloadSummary };
 
 
 
