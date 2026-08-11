@@ -293,6 +293,28 @@ function getTaskWorkloadSummary() {
   return { totalActive: 0, byPriority: { high: 0, medium: 0, low: 0, unspecified: 0 }, byCategory: {} };
 }
 
+function getTaskVelocityMetrics() {
+  try {
+    if (fs.existsSync(tasksFile)) {
+      const tasks = JSON.parse(fs.readFileSync(tasksFile, 'utf8'));
+      if (Array.isArray(tasks) && tasks.length > 0) {
+        const completed = tasks.filter(t => t && t.status === 'done');
+        const active = tasks.filter(t => t && t.status !== 'done');
+        const completionRatio = Number((completed.length / tasks.length).toFixed(2));
+        return {
+          total: tasks.length,
+          completedCount: completed.length,
+          activeCount: active.length,
+          completionRatio
+        };
+      }
+    }
+  } catch (err) {
+    console.error('Error calculating task velocity metrics:', err);
+  }
+  return { total: 0, completedCount: 0, activeCount: 0, completionRatio: 0 };
+}
+
 function formatHealthReport() {
   const isHealthy = runStartupChecks();
   return {
@@ -310,7 +332,8 @@ function formatHealthReport() {
     dueDateCoverage: getTaskDueDateCoverage(),
     highPriorityActive: getHighPriorityTasksSummary(),
     healthScore: getTaskHealthScore(),
-    workload: getTaskWorkloadSummary()
+    workload: getTaskWorkloadSummary(),
+    velocity: getTaskVelocityMetrics()
   };
 }
 
@@ -357,6 +380,8 @@ function runStartupChecks() {
       console.log(`🏥 Task Health Score: ${healthScoreStats.score}/100`);
       const workloadStats = getTaskWorkloadSummary();
       console.log(`📋 Active Workload: ${workloadStats.totalActive} tasks (${workloadStats.byPriority.high} high priority)`);
+      const velocityStats = getTaskVelocityMetrics();
+      console.log(`⚡ Velocity Metrics: Ratio ${velocityStats.completionRatio} (${velocityStats.completedCount}/${velocityStats.total} completed)`);
     } catch (e) {
       console.log("❌ Tasks file exists but has invalid JSON content.");
       isHealthy = false;
@@ -397,7 +422,7 @@ if (require.main === module) {
   runStartupChecks();
 }
 
-module.exports = { runStartupChecks, getSystemInfo, getAppVersion, validateTaskSchema, formatHealthReport, getTaskStatistics, getTaskPriorityBreakdown, getTaskCategoryBreakdown, getOverdueTasksSummary, getTaskCompletionRate, getUpcomingTasksSummary, getTaskAgeDistribution, getTaskDueDateCoverage, getHighPriorityTasksSummary, getTaskHealthScore, getTaskWorkloadSummary };
+module.exports = { runStartupChecks, getSystemInfo, getAppVersion, validateTaskSchema, formatHealthReport, getTaskStatistics, getTaskPriorityBreakdown, getTaskCategoryBreakdown, getOverdueTasksSummary, getTaskCompletionRate, getUpcomingTasksSummary, getTaskAgeDistribution, getTaskDueDateCoverage, getHighPriorityTasksSummary, getTaskHealthScore, getTaskWorkloadSummary, getTaskVelocityMetrics };
 
 
 
