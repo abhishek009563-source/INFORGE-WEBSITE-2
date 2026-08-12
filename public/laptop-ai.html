@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Laptop Assistant — Voice & System Windows Controller</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-cyan: #38bdf8;
+      --accent-purple: #a855f7;
+      --accent-green: #22c55e;
+      --accent-gold: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-main: 'Outfit', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      font-family: var(--font-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.14) 0%, transparent 40%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 20px 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      font-size: 36px;
+      color: var(--accent-purple);
+    }
+
+    .brand h1 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-nav:hover {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+    }
+
+    /* System Stats Banner */
+    .status-banner {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .status-indicator {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 14px var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    .status-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .status-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Main Grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-purple);
+    }
+
+    /* Voice AI Box */
+    .voice-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed var(--card-border);
+      border-radius: 20px;
+      gap: 16px;
+    }
+
+    .mic-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      border: none;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .mic-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.6);
+    }
+
+    .mic-btn.listening {
+      animation: micPulse 1.2s infinite alternate;
+      background: linear-gradient(135deg, #ef4444, #f59e0b);
+    }
+
+    @keyframes micPulse {
+      from { box-shadow: 0 0 10px #ef4444; transform: scale(1); }
+      to { box-shadow: 0 0 30px #f59e0b; transform: scale(1.15); }
+    }
+
+    .cmd-input-group {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .cmd-input {
+      flex-grow: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-family: var(--font-main);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .cmd-input:focus {
+      border-color: var(--accent-purple);
+    }
+
+    .btn-send {
+      background: var(--accent-purple);
+      border: none;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-send:hover {
+      background: #c084fc;
+    }
+
+    /* Output Console */
+    .ai-log {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #c084fc;
+      min-height: 100px;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+
+    /* Action Grid */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .action-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 16px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: var(--accent-purple);
+      transform: translateY(-2px);
+    }
+
+    .action-icon {
+      font-size: 28px;
+      color: var(--accent-purple);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="material-symbols-outlined brand-icon">laptop_mac</span>
+        <div>
+          <h1>AI Laptop Controller</h1>
+          <p>Voice & Automated Direct Control of your Windows PC</p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="/" class="btn-nav">
+          <span class="material-symbols-outlined">grid_view</span>
+          Kanban Board
+        </a>
+        <a href="/3d" class="btn-nav">
+          <span class="material-symbols-outlined">public</span>
+          3D Explorer
+        </a>
+        <a href="/phone" class="btn-nav">
+          <span class="material-symbols-outlined">phonelink_setup</span>
+          Phone Assistant
+        </a>
+      </div>
+    </header>
+
+    <!-- Laptop Status Banner -->
+    <div class="status-banner">
+      <div class="status-info">
+        <div class="status-indicator"></div>
+        <div>
+          <div id="laptop-title" class="status-title">Laptop Active & Ready 🚀</div>
+          <div id="laptop-sub" class="status-sub">Detecting Windows System Diagnostics...</div>
+        </div>
+      </div>
+      <button id="btn-refresh-sys" class="btn-nav">
+        <span class="material-symbols-outlined">refresh</span>
+        Refresh Diagnostics
+      </button>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="main-grid">
+      <!-- Left: Voice AI Command Assistant -->
+      <div class="card">
+        <div class="card-title">
+          <span class="material-symbols-outlined">mic</span>
+          AI Voice Command Assistant
+        </div>
+
+        <div class="voice-box">
+          <button id="mic-btn" class="mic-btn" title="Click to Speak Command">
+            <span class="material-symbols-outlined">mic</span>
+          </button>
+          <div id="mic-label" style="font-size: 13px; color: var(--text-muted); text-align: center;">
+            Click microphone and say: "Open Chrome", "Lock Laptop", "Volume Up", "Open Calculator", or "Open VS Code"
+          </div>
+        </div>
+
+        <div class="cmd-input-group">
+          <input type="text" id="ai-cmd-input" class="cmd-input" placeholder="Type a Laptop command (e.g. 'open chrome', 'lock laptop')...">
+          <button id="btn-send-cmd" class="btn-send">
+            <span class="material-symbols-outlined">send</span>
+            Execute
+          </button>
+        </div>
+
+        <div class="card-title" style="font-size: 14px; margin-top: 10px;">
+          <span class="material-symbols-outlined">terminal</span>
+          AI Execution Log
+        </div>
+        <div id="ai-log" class="ai-log">
+          [System Ready] Awaiting voice or text Laptop command...
+        </div>
+      </div>
+
+      <!-- Right: Quick Laptop Control Buttons -->
+      <div class="card">
+        <div class="card-title">
+          <span class="material-symbols-outlined">space_dashboard</span>
+          Quick Laptop Control Actions
+        </div>
+
+        <div class="action-grid">
+          <button class="action-btn" onclick="sendLaptopCmd('lock laptop')">
+            <span class="material-symbols-outlined action-icon" style="color: #ef4444;">lock</span>
+            Lock Laptop
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('volume up')">
+            <span class="material-symbols-outlined action-icon">volume_up</span>
+            Volume Up
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('volume down')">
+            <span class="material-symbols-outlined action-icon">volume_down</span>
+            Volume Down
+          </button>
+
+          <button class="action-btn" onclick="sendLaptopCmd('open chrome')">
+            <span class="material-symbols-outlined action-icon" style="color: #4285f4;">language</span>
+            Chrome
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('open vscode')">
+            <span class="material-symbols-outlined action-icon" style="color: #007acc;">code</span>
+            VS Code
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('open notepad')">
+            <span class="material-symbols-outlined action-icon">description</span>
+            Notepad
+          </button>
+
+          <button class="action-btn" onclick="sendLaptopCmd('open calculator')">
+            <span class="material-symbols-outlined action-icon">calculate</span>
+            Calculator
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('open explorer')">
+            <span class="material-symbols-outlined action-icon">folder_open</span>
+            File Explorer
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('open settings')">
+            <span class="material-symbols-outlined action-icon">settings</span>
+            Settings
+          </button>
+
+          <button class="action-btn" onclick="sendLaptopCmd('open taskmanager')">
+            <span class="material-symbols-outlined action-icon">monitoring</span>
+            Task Manager
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('open paint')">
+            <span class="material-symbols-outlined action-icon">palette</span>
+            MS Paint
+          </button>
+          <button class="action-btn" onclick="sendLaptopCmd('mute')">
+            <span class="material-symbols-outlined action-icon">volume_off</span>
+            Mute Sound
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const logElem = document.getElementById('ai-log');
+
+    function addLog(msg) {
+      const time = new Date().toLocaleTimeString();
+      logElem.innerHTML += `\n[${time}] ${msg}`;
+      logElem.scrollTop = logElem.scrollHeight;
+    }
+
+    async function fetchSystemDiagnostics() {
+      try {
+        const res = await fetch('/api/laptop/info');
+        const data = await res.json();
+        document.getElementById('laptop-title').innerText = `Laptop: ${data.hostname} (${data.platform}/${data.arch})`;
+        document.getElementById('laptop-sub').innerText = `RAM: ${data.freeMemoryGB}GB Free / ${data.totalMemoryGB}GB Total | System Uptime: ${data.uptimeHours} Hours`;
+        addLog(`Laptop Diagnostics Updated: ${data.hostname}`);
+      } catch (err) {
+        console.error('Error fetching system info:', err);
+      }
+    }
+
+    async function sendLaptopCmd(command) {
+      addLog(`Sending Laptop Command: "${command}"...`);
+
+      try {
+        const res = await fetch('/api/laptop/command', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ command })
+        });
+        const data = await res.json();
+        addLog(`Execution Result: ${data.message || JSON.stringify(data)}`);
+        speakText(data.message || 'Command executed');
+      } catch (err) {
+        addLog(`Error executing command: ${err.message}`);
+      }
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // Voice Speech Recognition
+    const micBtn = document.getElementById('mic-btn');
+    const micLabel = document.getElementById('mic-label');
+    const cmdInput = document.getElementById('ai-cmd-input');
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.lang = 'en-US';
+
+      micBtn.addEventListener('click', () => {
+        recognition.start();
+        micBtn.classList.add('listening');
+        micLabel.innerText = 'Listening... Speak your command now!';
+      });
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        cmdInput.value = transcript;
+        micBtn.classList.remove('listening');
+        micLabel.innerText = `Recognized: "${transcript}"`;
+        sendLaptopCmd(transcript);
+      };
+
+      recognition.onerror = (event) => {
+        micBtn.classList.remove('listening');
+        micLabel.innerText = `Speech Error: ${event.error}`;
+      };
+
+      recognition.onend = () => {
+        micBtn.classList.remove('listening');
+      };
+    } else {
+      micLabel.innerText = 'Speech recognition not supported in browser. Type your commands below!';
+    }
+
+    document.getElementById('btn-send-cmd').addEventListener('click', () => {
+      const cmd = cmdInput.value;
+      if (cmd) sendLaptopCmd(cmd);
+    });
+
+    cmdInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const cmd = cmdInput.value;
+        if (cmd) sendLaptopCmd(cmd);
+      }
+    });
+
+    document.getElementById('btn-refresh-sys').addEventListener('click', fetchSystemDiagnostics);
+
+    // Initial Diagnostics Fetch
+    fetchSystemDiagnostics();
+  </script>
+</body>
+</html>

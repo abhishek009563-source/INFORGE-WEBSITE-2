@@ -147,6 +147,7 @@ app.delete('/api/tasks/:id', (req, res) => {
 });
 
 const phoneController = require('./phone-controller');
+const laptopController = require('./laptop-controller');
 
 // 3D Solar System Explorer Route
 app.get('/3d', (req, res) => {
@@ -156,6 +157,38 @@ app.get('/3d', (req, res) => {
 // AI Phone USB Controller Page & API Endpoints
 app.get('/phone', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'phone-ai.html'));
+});
+
+// AI Laptop Assistant Page & API Endpoints
+app.get('/laptop', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'laptop-ai.html'));
+});
+
+app.get('/api/laptop/info', (req, res) => {
+  res.json(laptopController.getLaptopInfo());
+});
+
+app.post('/api/laptop/command', async (req, res) => {
+  const { command } = req.body;
+  if (!command) {
+    return res.status(400).json({ error: 'Command string is required' });
+  }
+  const result = await laptopController.processLaptopAiCommand(command);
+  res.json(result);
+});
+
+app.post('/api/laptop/lock', async (req, res) => {
+  const result = await laptopController.lockLaptop();
+  res.json(result);
+});
+
+app.post('/api/laptop/open', async (req, res) => {
+  const { app: appName } = req.body;
+  if (!appName) {
+    return res.status(400).json({ error: 'App name is required' });
+  }
+  const result = await laptopController.openLaptopApp(appName);
+  res.json(result);
 });
 
 app.get('/api/phone/status', async (req, res) => {

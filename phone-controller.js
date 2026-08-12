@@ -4,15 +4,6 @@ const path = require('path');
 const http = require('http');
 const https = require('https');
 
-// Path to local adb executable or system adb
-let adbPath = 'adb';
-const binDir = path.join(__dirname, 'bin');
-const localAdb = path.join(binDir, 'platform-tools', 'adb.exe');
-
-if (fs.existsSync(localAdb)) {
-  adbPath = localAdb;
-}
-
 // Package dictionary for common Android apps
 const APP_PACKAGES = {
   whatsapp: 'com.whatsapp',
@@ -30,9 +21,19 @@ const APP_PACKAGES = {
   clock: 'com.google.android.deskclock'
 };
 
+// Path to local adb executable or system adb
+function getAdbExecutable() {
+  const localAdb = path.join(__dirname, 'bin', 'platform-tools', 'adb.exe');
+  if (fs.existsSync(localAdb)) {
+    return localAdb;
+  }
+  return 'adb';
+}
+
 function executeAdb(args) {
-  return new Promise((resolve, reject) => {
-    const cmd = `"${adbPath}" ${args}`;
+  return new Promise((resolve) => {
+    const adbExe = getAdbExecutable();
+    const cmd = `"${adbExe}" ${args}`;
     exec(cmd, { cwd: __dirname }, (error, stdout, stderr) => {
       if (error) {
         resolve({ success: false, error: stderr || error.message, stdout: stdout || '' });
@@ -60,7 +61,7 @@ async function checkDeviceStatus() {
     connected: !!activeDevice,
     device: activeDevice || null,
     allDevices: devices,
-    adbPathUsed: adbPath
+    adbPathUsed: getAdbExecutable()
   };
 }
 
