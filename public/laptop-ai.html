@@ -517,7 +517,7 @@
       }
     }
 
-    // Voice Speech Recognition
+    // Voice Speech Recognition with Live Interim Feedback
     const micBtn = document.getElementById('mic-btn');
     const micLabel = document.getElementById('mic-label');
     const cmdInput = document.getElementById('ai-cmd-input');
@@ -526,25 +526,50 @@
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       const recognition = new SpeechRecognition();
       recognition.continuous = false;
+      recognition.interimResults = true;
       recognition.lang = 'en-US';
 
+      let finalTranscript = '';
+
       micBtn.addEventListener('click', () => {
-        recognition.start();
-        micBtn.classList.add('listening');
-        micLabel.innerText = 'Listening... Speak your command now!';
+        try {
+          finalTranscript = '';
+          recognition.start();
+          micBtn.classList.add('listening');
+          micLabel.innerText = 'Listening... Speak your command now!';
+        } catch (e) {
+          console.warn('Speech recognition already active');
+        }
       });
 
       recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        cmdInput.value = transcript;
-        micBtn.classList.remove('listening');
-        micLabel.innerText = `Recognized: "${transcript}"`;
-        sendLaptopCmd(transcript);
+        let interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+
+        const currentText = finalTranscript || interimTranscript;
+        if (currentText) {
+          cmdInput.value = currentText;
+          micLabel.innerText = `Hearing: "${currentText}"...`;
+        }
+
+        if (finalTranscript && finalTranscript.trim() !== '') {
+          micBtn.classList.remove('listening');
+          micLabel.innerText = `Executing: "${finalTranscript}"`;
+          sendLaptopCmd(finalTranscript);
+        }
       };
 
       recognition.onerror = (event) => {
         micBtn.classList.remove('listening');
-        micLabel.innerText = `Speech Error: ${event.error}`;
+        if (event.error !== 'no-speech') {
+          micLabel.innerText = `Speech Error: ${event.error}`;
+        }
       };
 
       recognition.onend = () => {

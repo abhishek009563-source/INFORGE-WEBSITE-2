@@ -91,45 +91,109 @@ async function systemAction(action) {
   return { success: false, message: `Unknown system action: ${action}` };
 }
 
-// 4. AI Voice Command Parser for Laptop
+// 4. AI Voice Command Parser for Laptop (Advanced Fuzzy NLP)
 async function processLaptopAiCommand(command) {
-  const cmd = command.toLowerCase().trim();
+  if (!command || typeof command !== 'string') {
+    return { success: false, message: 'No command provided' };
+  }
 
-  if (cmd.includes('lock laptop') || cmd.includes('lock pc') || cmd.includes('lock screen') || cmd.includes('lock computer')) {
+  // Clean and normalize text
+  const clean = command.toLowerCase()
+    .replace(/[^\w\s]/gi, '') // remove punctuation
+    .trim();
+
+  // 1. LOCK COMPUTER INTENTS
+  if (
+    clean.includes('lock') ||
+    clean.includes('screenlock') ||
+    clean.includes('log off') ||
+    clean.includes('sign out') ||
+    clean.includes('protect')
+  ) {
     return await lockLaptop();
   }
 
-  if (cmd.includes('volume up') || cmd.includes('increase volume') || cmd.includes('sound up')) {
+  // 2. VOLUME UP INTENTS
+  if (
+    clean.includes('volume up') ||
+    clean.includes('increase volume') ||
+    clean.includes('louder') ||
+    clean.includes('sound up') ||
+    clean.includes('audio up') ||
+    clean.includes('turn up')
+  ) {
     return await systemAction('volup');
   }
 
-  if (cmd.includes('volume down') || cmd.includes('decrease volume') || cmd.includes('sound down')) {
+  // 3. VOLUME DOWN INTENTS
+  if (
+    clean.includes('volume down') ||
+    clean.includes('decrease volume') ||
+    clean.includes('quiet') ||
+    clean.includes('lower') ||
+    clean.includes('sound down') ||
+    clean.includes('audio down') ||
+    clean.includes('turn down')
+  ) {
     return await systemAction('voldown');
   }
 
-  if (cmd.includes('mute') || cmd.includes('silence')) {
+  // 4. MUTE INTENTS
+  if (
+    clean.includes('mute') ||
+    clean.includes('silence') ||
+    clean.includes('unmute') ||
+    clean.includes('silent')
+  ) {
     return await systemAction('mute');
   }
 
-  if (cmd.includes('sleep') || cmd.includes('standby')) {
+  // 5. SLEEP INTENTS
+  if (
+    clean.includes('sleep') ||
+    clean.includes('standby') ||
+    clean.includes('hibernate')
+  ) {
     return await systemAction('sleep');
   }
 
-  // App opening checks
-  const appMatch = Object.keys(LAPTOP_APPS).find(app => cmd.includes(app));
-  if (appMatch) {
-    return await openLaptopApp(appMatch);
+  // 6. APPLICATION INTENT MAPPINGS (Synonyms & Aliases)
+  const APP_ALIASES = {
+    chrome: ['chrome', 'google chrome', 'browser', 'internet', 'web'],
+    code: ['code', 'vscode', 'vs code', 'visual studio code', 'editor'],
+    notepad: ['notepad', 'text editor', 'notes', 'note'],
+    calculator: ['calculator', 'calc', 'math'],
+    explorer: ['explorer', 'file explorer', 'files', 'folders', 'my computer', 'this pc'],
+    settings: ['settings', 'system settings', 'control panel', 'config'],
+    taskmanager: ['task manager', 'taskmgr', 'processes', 'activity monitor'],
+    paint: ['paint', 'mspaint', 'drawing', 'draw'],
+    edge: ['edge', 'microsoft edge']
+  };
+
+  for (const [appKey, aliases] of Object.entries(APP_ALIASES)) {
+    if (aliases.some(alias => clean.includes(alias))) {
+      return await openLaptopApp(appKey);
+    }
   }
 
-  // Custom "open <something>"
-  const match = cmd.match(/open\s+([a-z0-9_\.-]+)/i);
-  if (match && match[1]) {
-    return await openLaptopApp(match[1]);
+  // 7. REGEX PATTERNS: "open <X>", "launch <X>", "run <X>", "start <X>"
+  const actionMatch = clean.match(/(?:open|launch|start|run)\s+([a-z0-9\s]+)/i);
+  if (actionMatch && actionMatch[1]) {
+    const appName = actionMatch[1].trim();
+    return await openLaptopApp(appName);
+  }
+
+  // Fallback: If user just said the name of an app (e.g. "Chrome")
+  const words = clean.split(/\s+/);
+  for (const word of words) {
+    if (LAPTOP_APPS[word]) {
+      return await openLaptopApp(word);
+    }
   }
 
   return {
     success: false,
-    message: `Command recognized: "${command}". Try "open chrome", "open notepad", "lock laptop", or "volume up".`
+    message: `Command recognized: "${command}". Try "Open Chrome", "Lock Screen", "Volume Up", "Open Calculator", etc.`
   };
 }
 
@@ -153,3 +217,4 @@ module.exports = {
   getLaptopInfo,
   LAPTOP_APPS
 };
+
