@@ -146,6 +146,47 @@ app.delete('/api/tasks/:id', (req, res) => {
   res.json({ message: 'Task deleted successfully', id });
 });
 
+const phoneController = require('./phone-controller');
+
+// 3D Solar System Explorer Route
+app.get('/3d', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', '3d-explorer.html'));
+});
+
+// AI Phone USB Controller Page & API Endpoints
+app.get('/phone', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'phone-ai.html'));
+});
+
+app.get('/api/phone/status', async (req, res) => {
+  const status = await phoneController.checkDeviceStatus();
+  res.json(status);
+});
+
+app.post('/api/phone/command', async (req, res) => {
+  const { command, pin } = req.body;
+  if (!command) {
+    return res.status(400).json({ error: 'Command string is required' });
+  }
+  const result = await phoneController.processAiCommand(command, pin);
+  res.json(result);
+});
+
+app.post('/api/phone/unlock', async (req, res) => {
+  const { pin } = req.body;
+  const result = await phoneController.unlockPhone(pin);
+  res.json(result);
+});
+
+app.post('/api/phone/open', async (req, res) => {
+  const { app: appName } = req.body;
+  if (!appName) {
+    return res.status(400).json({ error: 'App name is required' });
+  }
+  const result = await phoneController.openApp(appName);
+  res.json(result);
+});
+
 // Catch-all route to serve the client app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -155,3 +196,5 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
+
+
