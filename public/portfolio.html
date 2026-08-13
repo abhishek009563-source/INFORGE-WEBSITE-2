@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS — Next-Gen AI & Full-Stack Developer Showcase</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #030712;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-cyan: #38bdf8;
+      --accent-purple: #a855f7;
+      --accent-green: #22c55e;
+      --accent-pink: #ec4899;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-main: 'Outfit', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      font-family: var(--font-main);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Particles Canvas */
+    #hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 1200px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      font-size: 32px;
+      color: var(--accent-cyan);
+      animation: spinGlow 12s linear infinite;
+    }
+
+    @keyframes spinGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-cyan);
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(168, 85, 247, 0.5);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 120px;
+      position: relative;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: var(--accent-green);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      max-width: 900px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 680px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-title-box {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    /* Project Cards Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 800px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 38px; }
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 30px 60px rgba(56, 189, 248, 0.2);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .project-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+    }
+
+    .project-icon-box.purple {
+      background: rgba(168, 85, 247, 0.12);
+      border-color: rgba(168, 85, 247, 0.3);
+      color: var(--accent-purple);
+    }
+
+    .project-icon-box.green {
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.3);
+      color: var(--accent-green);
+    }
+
+    .project-icon-box.pink {
+      background: rgba(236, 72, 153, 0.12);
+      border-color: rgba(236, 72, 153, 0.3);
+      color: var(--accent-pink);
+    }
+
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-launch {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-launch:hover {
+      background: var(--accent-cyan);
+      color: #030712;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skill-card h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .skill-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Interactive Terminal Box */
+    .terminal-box {
+      background: #020617;
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+      font-family: var(--font-code);
+    }
+
+    .terminal-header {
+      background: rgba(15, 23, 42, 0.9);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .term-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .terminal-body {
+      padding: 24px;
+      font-size: 14px;
+      color: var(--accent-cyan);
+      min-height: 200px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .term-input-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .term-prompt {
+      color: var(--accent-green);
+      margin-right: 10px;
+    }
+
+    .term-input {
+      background: transparent;
+      border: none;
+      color: white;
+      font-family: var(--font-code);
+      font-size: 14px;
+      outline: none;
+      flex-grow: 1;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Canvas -->
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="#" class="brand">
+      <span class="material-symbols-outlined brand-icon">hub</span>
+      <span class="brand-title">NEXUS</span>
+    </a>
+    <div class="nav-links">
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#terminal" class="nav-link">Terminal</a>
+      <a href="/3d" class="nav-link">3D Explorer</a>
+      <a href="/laptop" class="btn-action">
+        <span class="material-symbols-outlined">laptop_mac</span>
+        AI Laptop Control
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section container">
+    <div class="status-badge">
+      <span class="badge-dot"></span>
+      Available for Engineering & AI Projects
+    </div>
+    
+    <h1 class="hero-title">
+      Building <span>Next-Generation</span> Web, 3D & AI Applications
+    </h1>
+
+    <p class="hero-subtitle">
+      Architecting full-stack web applications, interactive 3D WebGL experiences, and USB/Windows hardware voice automation assistants.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#projects" class="btn-action" style="padding: 14px 28px; font-size: 16px;">
+        <span class="material-symbols-outlined">rocket_launch</span>
+        Explore Live Apps
+      </a>
+      <a href="/phone" class="btn-secondary">
+        <span class="material-symbols-outlined">phonelink_setup</span>
+        AI Phone Assistant
+      </a>
+    </div>
+  </section>
+
+  <!-- Projects Showcase Section -->
+  <section id="projects" class="section container">
+    <div class="section-title-box">
+      <div class="section-subtitle">// PORTFOLIO SHOWCASE</div>
+      <h2 class="section-title">Featured Applications & Systems</h2>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1: AI Phone Controller -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-box purple">
+            <span class="material-symbols-outlined" style="font-size: 28px;">phonelink_setup</span>
+          </div>
+          <div class="tag">AI & Hardware</div>
+        </div>
+        <div>
+          <h3 class="project-title">AI USB Phone Controller</h3>
+          <p class="project-desc">Voice & natural language USB phone automation engine built with Node.js, Web Speech API, and ADB bridge. Wakes, unlocks screen, and launches WhatsApp, YouTube, & Settings.</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">ADB Bridge</span>
+          <span class="tag">Web Speech API</span>
+          <span class="tag">Android CLI</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-size: 13px; color: var(--accent-green); display: flex; align-items: center; gap: 4px;">
+            <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> Live & Ready
+          </span>
+          <a href="/phone" class="btn-launch">
+            Launch App <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: 3D Cosmos Explorer -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-box">
+            <span class="material-symbols-outlined" style="font-size: 28px;">public</span>
+          </div>
+          <div class="tag">3D & WebGL</div>
+        </div>
+        <div>
+          <h3 class="project-title">COSMOS 3D Solar Explorer</h3>
+          <p class="project-desc">Interactive WebGL 3D Solar System & Galaxy simulator built with Three.js. Features realistic 3D orbits, lighting, glassmorphic HUD, and Web Audio API space drone soundtrack.</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Three.js</span>
+          <span class="tag">WebGL</span>
+          <span class="tag">Web Audio API</span>
+          <span class="tag">Orbit Controls</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-size: 13px; color: var(--accent-green); display: flex; align-items: center; gap: 4px;">
+            <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> Live & Ready
+          </span>
+          <a href="/3d" class="btn-launch">
+            Launch 3D Explorer <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3: AI Laptop Assistant -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-box green">
+            <span class="material-symbols-outlined" style="font-size: 28px;">laptop_mac</span>
+          </div>
+          <div class="tag">System Automation</div>
+        </div>
+        <div>
+          <h3 class="project-title">AI Laptop Voice Assistant</h3>
+          <p class="project-desc">Native Windows system control assistant with fuzzy NLP parsing. Controls laptop screen lock, system volume, and launches desktop apps like VS Code, Chrome, & Calculator.</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">PowerShell API</span>
+          <span class="tag">Fuzzy NLP</span>
+          <span class="tag">Windows System</span>
+          <span class="tag">Express.js</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-size: 13px; color: var(--accent-green); display: flex; align-items: center; gap: 4px;">
+            <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> Live & Ready
+          </span>
+          <a href="/laptop" class="btn-launch">
+            Launch PC Control <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 4: Aesthetix Task Board -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-box pink">
+            <span class="material-symbols-outlined" style="font-size: 28px;">grid_view</span>
+          </div>
+          <div class="tag">Full-Stack Web</div>
+        </div>
+        <div>
+          <h3 class="project-title">Aesthetix Kanban Dashboard</h3>
+          <p class="project-desc">Full-stack task management system with real-time statistics dashboard, priority breakdown, due-date coverage metrics, and task health score analytics.</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Vanilla CSS</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Task Health Score</span>
+          <span class="tag">Express</span>
+        </div>
+        <div class="project-footer">
+          <span style="font-size: 13px; color: var(--accent-green); display: flex; align-items: center; gap: 4px;">
+            <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> Live & Ready
+          </span>
+          <a href="/" class="btn-launch">
+            Launch Task Board <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Core Capabilities Section -->
+  <section id="skills" class="section container">
+    <div class="section-title-box">
+      <div class="section-subtitle">// TECHNICAL STACK</div>
+      <h2 class="section-title">Core Engineering Capabilities</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="material-symbols-outlined" style="font-size: 32px; color: var(--accent-cyan);">code</span>
+        <h4>Full-Stack Web</h4>
+        <p>JavaScript, Node.js, Express.js, REST APIs, HTML5, Vanilla CSS Glassmorphism.</p>
+      </div>
+
+      <div class="skill-card">
+        <span class="material-symbols-outlined" style="font-size: 32px; color: var(--accent-purple);">psychology</span>
+        <h4>AI & NLP Speech</h4>
+        <p>Web Speech API, Natural Language Processing, Fuzzy Intent Matching, Audio Synthesis.</p>
+      </div>
+
+      <div class="skill-card">
+        <span class="material-symbols-outlined" style="font-size: 32px; color: var(--accent-green);">view_in_ar</span>
+        <h4>3D & Computer Graphics</h4>
+        <p>Three.js, WebGL, Shader Materials, Orbit Controls, Interactive Particle Systems.</p>
+      </div>
+
+      <div class="skill-card">
+        <span class="material-symbols-outlined" style="font-size: 32px; color: var(--accent-pink);">settings_suggest</span>
+        <h4>System & Hardware Automation</h4>
+        <p>Android Debug Bridge (ADB), PowerShell Automation, Child Process Management, Git.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Terminal Simulator Section -->
+  <section id="terminal" class="section container">
+    <div class="section-title-box">
+      <div class="section-subtitle">// INTERACTIVE CONSOLE</div>
+      <h2 class="section-title">Developer Interactive Terminal</h2>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <span class="term-dot" style="background: #ef4444;"></span>
+        <span class="term-dot" style="background: #f59e0b;"></span>
+        <span class="term-dot" style="background: #22c55e;"></span>
+        <span style="font-size: 12px; color: var(--text-muted); margin-left: 10px;">nexus-cli ~ bash</span>
+      </div>
+      <div id="term-output" class="terminal-body">
+        <div>Welcome to NEXUS CLI. Type <span style="color: var(--accent-green);">'help'</span> to view available interactive commands.</div>
+      </div>
+      <div class="term-input-row">
+        <span class="term-prompt">nexus@fullstack:~$</span>
+        <input type="text" id="term-input" class="term-input" placeholder="Type a command (e.g. 'projects', 'skills', 'launch 3d', 'help')...">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 NEXUS Showcase — Built with HTML5, Vanilla CSS, Three.js, & Express.js</p>
+    </div>
+  </footer>
+
+  <!-- Background Animation & Interactive Terminal Script -->
+  <script>
+    // Particle Canvas Animation
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.6,
+        dy: (Math.random() - 0.5) * 0.6,
+        alpha: Math.random() * 0.6 + 0.2
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(56, 189, 248, ${p.alpha})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Interactive Terminal Script
+    const termOutput = document.getElementById('term-output');
+    const termInput = document.getElementById('term-input');
+
+    function printTerm(text, color = '#38bdf8') {
+      const line = document.createElement('div');
+      line.style.color = color;
+      line.style.marginTop = '4px';
+      line.innerHTML = text;
+      termOutput.appendChild(line);
+      termOutput.scrollTop = termOutput.scrollHeight;
+    }
+
+    termInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const cmd = termInput.value.trim().toLowerCase();
+        printTerm(`nexus@fullstack:~$ ${cmd}`, '#ffffff');
+        termInput.value = '';
+
+        if (cmd === 'help') {
+          printTerm('Available commands:');
+          printTerm('  - <span style="color: #22c55e;">projects</span> : List all built applications');
+          printTerm('  - <span style="color: #22c55e;">skills</span>   : Print core tech stack');
+          printTerm('  - <span style="color: #22c55e;">launch 3d</span>: Go to 3D Solar Explorer');
+          printTerm('  - <span style="color: #22c55e;">launch pc</span>: Go to AI Laptop Assistant');
+          printTerm('  - <span style="color: #22c55e;">clear</span>    : Clear terminal screen');
+        } else if (cmd === 'projects') {
+          printTerm('Active Projects:');
+          printTerm('  1. AI USB Phone Controller [/phone]');
+          printTerm('  2. COSMOS 3D Solar Explorer [/3d]');
+          printTerm('  3. AI Windows Laptop Assistant [/laptop]');
+          printTerm('  4. Aesthetix Kanban Dashboard [/]');
+        } else if (cmd === 'skills') {
+          printTerm('Tech Stack: Node.js, Express, Three.js, WebGL, Web Speech API, ADB Bridge, PowerShell.');
+        } else if (cmd === 'launch 3d') {
+          window.location.href = '/3d';
+        } else if (cmd === 'launch pc') {
+          window.location.href = '/laptop';
+        } else if (cmd === 'clear') {
+          termOutput.innerHTML = '';
+        } else {
+          printTerm(`Command not recognized: '${cmd}'. Type 'help' for options.`, '#ef4444');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

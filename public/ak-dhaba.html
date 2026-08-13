@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AK Dhaba — Authentic Punjabi & North Indian Cuisine</title>
+  <meta name="description" content="Experience traditional Punjabi flavours, tandoori delicacies, hearty portions, and authentic hospitality at AK Dhaba. Traditional taste made with love.">
+  
+  <!-- Google Fonts: Outfit, Playfair Display, & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0c;
+      --card-bg: #141418;
+      --card-border: rgba(245, 158, 11, 0.15);
+      --primary-red: #991b1b;
+      --accent-red: #dc2626;
+      --gold-main: #f59e0b;
+      --gold-hover: #d97706;
+      --cream-light: #fffbeb;
+      --cream-muted: #fef3c7;
+      --text-white: #ffffff;
+      --text-muted: #a1a1aa;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Outfit', sans-serif;
+      --font-accent: 'Space Grotesk', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      font-family: var(--font-body);
+      color: var(--text-white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Sticky Navigation */
+    .header-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(245, 158, 11, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-red), #450a0a);
+      border: 1px solid var(--gold-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-main);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);
+    }
+
+    .brand-name {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+
+    .brand-name span {
+      color: var(--gold-main);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--cream-light);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--gold-main);
+    }
+
+    .btn-nav-table {
+      background: linear-gradient(135deg, var(--gold-main), var(--gold-hover));
+      color: #000000;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-nav-table:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 100px;
+      background: linear-gradient(180deg, rgba(10, 10, 12, 0.6) 0%, rgba(10, 10, 12, 0.95) 100%),
+                  url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(153, 27, 27, 0.25) 0%, rgba(10, 10, 12, 0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 900px;
+      padding: 40px 24px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--gold-main);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
+      animation: livePulse 1.8s infinite;
+    }
+
+    @keyframes livePulse {
+      0% { opacity: 0.5; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.5; transform: scale(0.9); }
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 58px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--cream-light);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-title span {
+      color: var(--gold-main);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      color: var(--cream-muted);
+      max-width: 720px;
+      margin: 0 auto 36px auto;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-red), var(--primary-red));
+      color: var(--text-white);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 14px 32px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(220, 38, 38, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(220, 38, 38, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--gold-main);
+      color: var(--gold-main);
+      padding: 14px 32px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gold-main);
+      color: #000000;
+      transform: translateY(-3px);
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px auto;
+    }
+
+    .section-tag {
+      color: var(--gold-main);
+      font-family: var(--font-accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--cream-light);
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-image-wrapper {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .about-image-wrapper img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .about-image-wrapper:hover img {
+      transform: scale(1.04);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(10, 10, 12, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--gold-main);
+      padding: 16px 24px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .about-badge-number {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--gold-main);
+    }
+
+    .about-badge-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .about-text h3 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--cream-light);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--cream-light);
+      font-size: 15px;
+    }
+
+    .highlight-icon {
+      color: var(--gold-main);
+    }
+
+    /* Specialities (8 Dishes Grid) */
+    .dishes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .dishes-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 42px; }
+    }
+
+    @media (max-width: 640px) {
+      .dishes-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 34px; }
+    }
+
+    .dish-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .dish-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold-main);
+      box-shadow: 0 25px 45px rgba(245, 158, 11, 0.2);
+    }
+
+    .dish-image-box {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .dish-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .dish-card:hover .dish-image-box img {
+      transform: scale(1.08);
+    }
+
+    .dish-price-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--gold-main);
+      color: var(--gold-main);
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .dish-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .dish-name {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream-light);
+      margin-bottom: 8px;
+    }
+
+    .dish-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .btn-order-dish {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--gold-main);
+      color: var(--gold-main);
+      padding: 10px 0;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-order-dish:hover {
+      background: var(--gold-main);
+      color: #000000;
+    }
+
+    /* Menu Section Tabs */
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 16px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--gold-main);
+      color: #000000;
+      border-color: var(--gold-main);
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .menu-list-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 40px;
+    }
+
+    @media (max-width: 768px) {
+      .menu-list-container { grid-template-columns: 1fr; }
+    }
+
+    .menu-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-item-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cream-light);
+    }
+
+    .menu-item-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .menu-item-price {
+      font-family: var(--font-accent);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gold-main);
+      white-space: nowrap;
+    }
+
+    /* Why AK Dhaba (4 Feature Cards) */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold-main);
+    }
+
+    .feature-icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: rgba(153, 27, 27, 0.3);
+      border: 1px solid var(--gold-main);
+      color: var(--gold-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      font-size: 30px;
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--cream-light);
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .gallery-item {
+      position: relative;
+      height: 260px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 12, 0.85) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-caption {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold-main);
+    }
+
+    /* Customer Reviews Section */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stars {
+      color: var(--gold-main);
+      margin-bottom: 14px;
+      display: flex;
+      gap: 2px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      color: var(--cream-muted);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-red), var(--gold-main));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    .reviewer-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--cream-light);
+    }
+
+    .reviewer-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Location & Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact-info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .info-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--gold-main);
+      color: var(--gold-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .info-val {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--cream-light);
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-call {
+      background: var(--primary-red);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(153, 27, 27, 0.4);
+    }
+
+    .map-placeholder {
+      background: #141418;
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-inner {
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #050507;
+      border-top: 1px solid rgba(245, 158, 11, 0.12);
+      padding: 60px 0 30px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--gold-main);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-main);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--gold-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Mobile Bottom Sticky Bar */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--gold-main);
+      padding: 12px 20px;
+      z-index: 999;
+      justify-content: space-around;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-sticky-bar { display: flex; }
+      body { padding-bottom: 70px; }
+      .nav-links { display: none; }
+    }
+
+    .mobile-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--cream-light);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      gap: 4px;
+    }
+
+    .mobile-btn span {
+      color: var(--gold-main);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #141418;
+      border: 1px solid var(--gold-main);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 500px;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: var(--cream-muted);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--card-border);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--gold-main);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="header-nav">
+    <div class="nav-inner">
+      <a href="#" class="brand-logo">
+        <div class="logo-badge">AK</div>
+        <div class="brand-name">AK <span>Dhaba</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link">About Us</a></li>
+        <li><a href="#specialities" class="nav-link">Specialities</a></li>
+        <li><a href="#menu" class="nav-link">Full Menu</a></li>
+        <li><a href="#why-us" class="nav-link">Why Us</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <button class="btn-nav-table" onclick="openModal('book')">
+        <span class="material-symbols-outlined">table_restaurant</span>
+        Book a Table
+      </button>
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="status-pill">
+        <span class="live-dot"></span>
+        OPEN NOW • Serving Hot & Fresh Punjabi Delicacies
+      </div>
+      <h1 class="hero-title">Authentic Punjabi Flavours, <span>Made With Love</span></h1>
+      <p class="hero-sub">Traditional taste, hearty portions, and the true AK Dhaba experience. Prepared fresh daily with time-honored recipes.</p>
+      
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">
+          <span class="material-symbols-outlined">restaurant_menu</span>
+          View Full Menu
+        </a>
+        <button class="btn-secondary" onclick="openModal('book')">
+          <span class="material-symbols-outlined">table_restaurant</span>
+          Book a Table
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ABOUT AK DHABA -->
+  <section id="about" class="section container">
+    <div class="about-grid">
+      <div class="about-image-wrapper">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" alt="AK Dhaba Interior & Dining Experience">
+        <div class="about-badge">
+          <div class="about-badge-number">100%</div>
+          <div class="about-badge-text">Authentic Punjabi<br>Desi Ghee Flavours</div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <span class="section-tag">// OUR STORY</span>
+        <h3>Hearty Hospitality & Time-Honored Punjabi Recipes</h3>
+        <p>At AK Dhaba, we bring the warmth and rich culinary heritage of Punjab straight to your table. Founded on a passion for authentic taste, we prepare every dish using secret family spice blends, traditional clay tandoors, and fresh ingredients.</p>
+        <p>Whether it's our slow-cooked Dal Makhani simmered overnight or our signature Butter Chicken in rich makhani gravy, we believe in generous portions, hearty flavours, and memorable dining experiences with family and friends.</p>
+
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <span class="material-symbols-outlined highlight-icon">task_alt</span>
+            100% Pure Desi Ghee Prep
+          </div>
+          <div class="highlight-item">
+            <span class="material-symbols-outlined highlight-icon">task_alt</span>
+            Clay Tandoor Cooked Breads
+          </div>
+          <div class="highlight-item">
+            <span class="material-symbols-outlined highlight-icon">task_alt</span>
+            Handcrafted Secret Spices
+          </div>
+          <div class="highlight-item">
+            <span class="material-symbols-outlined highlight-icon">task_alt</span>
+            Family Friendly Ambience
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SPECIALITIES (8 Food Cards) -->
+  <section id="specialities" class="section container" style="background: rgba(255, 255, 255, 0.01);">
+    <div class="section-header">
+      <span class="section-tag">// CHEF'S SPECIALS</span>
+      <h2 class="section-title">AK Dhaba Specialities</h2>
+      <p class="section-desc">Handcrafted signature dishes prepared fresh in our kitchen daily.</p>
+    </div>
+
+    <div class="dishes-grid">
+      <!-- Dish 1 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="Butter Chicken">
+          <div class="dish-price-tag">₹340</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Butter Chicken</h4>
+          <p class="dish-desc">Tender tandoori chicken simmered in a rich, buttery tomato gravy with fresh cream and aromatic fenugreek.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Butter Chicken')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Dish 2 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80" alt="Amritsari Kulcha">
+          <div class="dish-price-tag">₹180</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Amritsari Stuffed Kulcha</h4>
+          <p class="dish-desc">Crispy tandoori flatbread stuffed with spiced potatoes and paneer, served with spicy chole and butter.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Amritsari Kulcha')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Dish 3 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80" alt="Dal Makhani">
+          <div class="dish-price-tag">₹260</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Dal Makhani</h4>
+          <p class="dish-desc">Black lentils and kidney beans slow-cooked overnight on charcoal fire with white butter & cream.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Dal Makhani')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Dish 4 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=600&q=80" alt="Paneer Tikka">
+          <div class="dish-price-tag">₹280</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Paneer Tikka Tandoori</h4>
+          <p class="dish-desc">Fresh cottage cheese cubes marinated in spiced yogurt and grilled to perfection in clay tandoor.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Paneer Tikka')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Dish 5 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80" alt="Tandoori Chicken">
+          <div class="dish-price-tag">₹360</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Tandoori Chicken</h4>
+          <p class="dish-desc">Juicy chicken marinated in authentic Punjabi spices and roasted in traditional red clay tandoor.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Tandoori Chicken')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Dish 6 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=600&q=80" alt="Chole Bhature">
+          <div class="dish-price-tag">₹160</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Chole Bhature</h4>
+          <p class="dish-desc">Fluffy fried bhaturas served with authentic tangy Punjabi chickpeas, pickled onions, and mint chutney.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Chole Bhature')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Dish 7 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1571006682858-a4c8d5152899?auto=format&fit=crop&w=600&q=80" alt="Punjabi Lassi">
+          <div class="dish-price-tag">₹90</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Punjabi Sweet Lassi</h4>
+          <p class="dish-desc">Thick, creamy chilled yogurt drink topped with a dollop of fresh malai and crushed dry fruits.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Punjabi Lassi')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Dish 8 -->
+      <div class="dish-card">
+        <div class="dish-image-box">
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Garlic Naan">
+          <div class="dish-price-tag">₹60</div>
+        </div>
+        <div class="dish-info">
+          <h4 class="dish-name">Butter Garlic Naan</h4>
+          <p class="dish-desc">Freshly baked tandoori naan topped with minced garlic, coriander leaves, and generous butter glaze.</p>
+          <button class="btn-order-dish" onclick="openModal('order', 'Garlic Naan')">
+            <span class="material-symbols-outlined">shopping_bag</span> Order Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FULL MENU WITH CATEGORY TABS -->
+  <section id="menu" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// EXPLORE THE MENU</span>
+      <h2 class="section-title">AK Dhaba Complete Menu</h2>
+      <p class="section-desc">Select a category below to browse our traditional North Indian offerings.</p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="filterMenu('starters')">Starters</button>
+      <button class="tab-btn" onclick="filterMenu('tandoor')">Tandoor</button>
+      <button class="tab-btn" onclick="filterMenu('mains')">Main Course</button>
+      <button class="tab-btn" onclick="filterMenu('breads')">Breads</button>
+      <button class="tab-btn" onclick="filterMenu('rice')">Rice & Biryani</button>
+      <button class="tab-btn" onclick="filterMenu('chinese')">Indo-Chinese</button>
+      <button class="tab-btn" onclick="filterMenu('beverages')">Beverages</button>
+      <button class="tab-btn" onclick="filterMenu('desserts')">Desserts</button>
+    </div>
+
+    <!-- Menu Items List -->
+    <div id="menu-items" class="menu-list-container">
+      <!-- Items dynamically populated via JavaScript -->
+    </div>
+  </section>
+
+  <!-- 5. WHY AK DHABA -->
+  <section id="why-us" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// OUR PROMISE</span>
+      <h2 class="section-title">Why Dine At AK Dhaba?</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <span class="material-symbols-outlined">menu_book</span>
+        </div>
+        <h4 class="feature-title">Authentic Recipes</h4>
+        <p class="feature-desc">Preserved heritage Punjabi recipes passed down through generations for true rustic flavour.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <span class="material-symbols-outlined">eco</span>
+        </div>
+        <h4 class="feature-title">Fresh Ingredients</h4>
+        <p class="feature-desc">Farm-fresh vegetables, pure dairy butter, and whole spices ground in-house daily.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <span class="material-symbols-outlined">local_fire_department</span>
+        </div>
+        <h4 class="feature-title">Traditional Tandoor</h4>
+        <p class="feature-desc">Authentic red clay tandoors fired with charcoal for distinct smoky aromas and perfect crusts.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <span class="material-symbols-outlined">set_meal</span>
+        </div>
+        <h4 class="feature-title">Generous Portions</h4>
+        <p class="feature-desc">Hearty Punjabi portion sizes designed for joyful family feasts and satisfying meals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. GALLERY -->
+  <section id="gallery" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// PHOTO GALLERY</span>
+      <h2 class="section-title">Visual Feast & Atmosphere</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80" alt="Punjabi Thali">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Grand Punjabi Thali</div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Restaurant Interior">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Warm Dining Ambience</div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80" alt="Clay Tandoor">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Clay Tandoor Cooking</div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=600&q=80" alt="Kebabs & Starters">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Fresh From Tandoor</div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80" alt="Gravies & Curries">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Rich Butter Gravies</div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Hot Naan Breads">
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Hot Stuffed Breads</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CUSTOMER REVIEWS -->
+  <section id="reviews" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// TESTIMONIALS</span>
+      <h2 class="section-title">What Our Guests Say</h2>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+        </div>
+        <p class="review-text">"Best Butter Chicken and Garlic Naan in town! The flavour is authentic and the portion size was generous for our family dinner."</p>
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">R</div>
+          <div>
+            <div class="reviewer-name">Rahul Sharma</div>
+            <div class="reviewer-date">Dined 2 days ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+        </div>
+        <p class="review-text">"The Amritsari Kulcha with Chole reminded me of authentic Highway Dhabas in Punjab. The thick sweet Lassi is a must-try!"</p>
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">P</div>
+          <div>
+            <div class="reviewer-name">Priya Kaur</div>
+            <div class="reviewer-date">Dined last week</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+        </div>
+        <p class="review-text">"Dal Makhani slow-cooked overnight has an amazing smoky taste. Prompt service and warm hospitality."</p>
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Amit Verma</div>
+            <div class="reviewer-date">Dined 5 days ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+          <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
+        </div>
+        <p class="review-text">"Great place for family gatherings. Clean ambience, friendly staff, and mouth-watering Paneer Tikka."</p>
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">S</div>
+          <div>
+            <div class="reviewer-name">Simran Malhotra</div>
+            <div class="reviewer-date">Dined 3 days ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. LOCATION / CONTACT -->
+  <section id="contact" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// FIND US & GET IN TOUCH</span>
+      <h2 class="section-title">Visit AK Dhaba</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info-card">
+        <div class="info-row">
+          <div class="info-icon">
+            <span class="material-symbols-outlined">location_on</span>
+          </div>
+          <div>
+            <div class="info-label">Address</div>
+            <div class="info-val">[Restaurant Address Placeholder — GT Road / City Center]</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <span class="material-symbols-outlined">schedule</span>
+          </div>
+          <div>
+            <div class="info-label">Opening Hours</div>
+            <div class="info-val">Monday - Sunday: 11:00 AM – 11:30 PM</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <span class="material-symbols-outlined">call</span>
+          </div>
+          <div>
+            <div class="info-label">Phone & Reservations</div>
+            <div class="info-val">[+91 98765 43210 Placeholder]</div>
+          </div>
+        </div>
+
+        <div class="contact-buttons">
+          <a href="https://wa.me/" target="_blank" class="btn-whatsapp">
+            <span class="material-symbols-outlined">chat</span> WhatsApp Us
+          </a>
+          <a href="tel:+919876543210" class="btn-call">
+            <span class="material-symbols-outlined">call</span> Call Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Google Maps Interactive Placeholder -->
+      <div class="map-placeholder">
+        <div class="map-inner">
+          <span class="material-symbols-outlined" style="font-size: 56px; color: var(--gold-main); margin-bottom: 12px;">map</span>
+          <h4 style="font-family: var(--font-heading); font-size: 20px; color: var(--cream-light);">Interactive Google Map</h4>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">[Google Maps Embed Location Placeholder]</p>
+          <button class="btn-secondary" style="margin-top: 16px; padding: 8px 20px; font-size: 13px;" onclick="alert('Map Directions Placeholder triggered')">Get Directions</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#" class="brand-logo" style="margin-bottom: 16px;">
+            <div class="logo-badge">AK</div>
+            <div class="brand-name">AK <span>Dhaba</span></div>
+          </a>
+          <p style="font-size: 14px; color: var(--text-muted); max-width: 300px; margin-bottom: 20px;">Authentic Punjabi flavours, tandoori specialties, and hearty traditional meals served with warmth.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" title="Facebook Placeholder"><span class="material-symbols-outlined">public</span></a>
+            <a href="#" class="social-btn" title="Instagram Placeholder"><span class="material-symbols-outlined">photo_camera</span></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#specialities">Specialities</a></li>
+            <li><a href="#menu">Full Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Timings</h4>
+          <ul class="footer-links">
+            <li>Lunch: 11:30 AM - 4:00 PM</li>
+            <li>Dinner: 7:00 PM - 11:30 PM</li>
+            <li>Open All 7 Days</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Reservations</h4>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Call us for party orders & table bookings:</p>
+          <button class="btn-primary" style="padding: 10px 20px; font-size: 14px; width: 100%; justify-content: center;" onclick="openModal('book')">
+            Book Table Online
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 AK Dhaba Restaurant. All rights reserved. | Demo Commercial Website
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Floating Navigation Bar -->
+  <div class="mobile-sticky-bar">
+    <a href="tel:+919876543210" class="mobile-btn">
+      <span class="material-symbols-outlined">call</span>
+      Call
+    </a>
+    <a href="https://wa.me/" class="mobile-btn">
+      <span class="material-symbols-outlined">chat</span>
+      WhatsApp
+    </a>
+    <a href="#menu" class="mobile-btn">
+      <span class="material-symbols-outlined">restaurant_menu</span>
+      Menu
+    </a>
+    <a href="javascript:void(0)" onclick="openModal('book')" class="mobile-btn">
+      <span class="material-symbols-outlined">table_restaurant</span>
+      Book
+    </a>
+  </div>
+
+  <!-- Booking / Order Modal -->
+  <div id="booking-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h3 id="modal-title" style="font-family: var(--font-heading); font-size: 24px; color: var(--gold-main); margin-bottom: 8px;">Book a Table</h3>
+      <p id="modal-sub" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Reserve your spot at AK Dhaba for a delicious Punjabi dining experience.</p>
+
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>Your Full Name</label>
+          <input type="text" class="form-control" placeholder="e.g. Gurpreet Singh" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" class="form-control" placeholder="e.g. +91 98765 43210" required>
+        </div>
+        <div class="form-group">
+          <label>Date & Time / Guests</label>
+          <input type="text" class="form-control" placeholder="e.g. Today 8:00 PM, 4 Guests" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+          Confirm Booking Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    // Menu Data Categories
+    const MENU_DATA = {
+      starters: [
+        { name: 'Paneer Tikka Shashlik', desc: 'Cottage cheese marinated in spiced hung curd with bell peppers', price: '₹280' },
+        { name: 'Hara Bhara Kebab', desc: 'Crispy spinach and green pea patties served with mint chutney', price: '₹220' },
+        { name: 'Crispy Corn Salt & Pepper', desc: 'Golden sweetcorn kernels tossed with crushed pepper', price: '₹210' },
+        { name: 'Dahi Ke Kebab', desc: 'Velvety hung curd kebabs with cardamom and spices', price: '₹250' }
+      ],
+      tandoor: [
+        { name: 'Tandoori Chicken (Full)', desc: 'Whole chicken marinated in Punjabi spices & mustard oil', price: '₹550' },
+        { name: 'Chicken Malai Tikka', desc: 'Boneless chicken breast in creamy cheese marinade', price: '₹340' },
+        { name: 'Amritsari Fish Fry', desc: 'Crispy carom seed batter fried fish fillets', price: '₹420' },
+        { name: 'Mutton Seekh Kebab', desc: 'Minced spiced mutton skewers roasted over hot charcoal', price: '₹380' }
+      ],
+      mains: [
+        { name: 'AK Dhaba Special Butter Chicken', desc: 'Rich tomato cashew gravy with juicy tandoori chicken', price: '₹360' },
+        { name: 'Dal Makhani Desi Ghee', desc: 'Overnight slow cooked black lentils with fresh white butter', price: '₹260' },
+        { name: 'Kadhai Paneer', desc: 'Cottage cheese tossed with pounded spices and capsicum', price: '₹290' },
+        { name: 'Punjabi Chicken Curry', desc: 'Traditional homestyle spicy chicken curry in thick onion gravy', price: '₹340' },
+        { name: 'Mutton Rogan Josh', desc: 'Slow cooked tender mutton in aromatic Kashmiri gravy', price: '₹440' },
+        { name: 'Sarson Ka Saag (Seasonal)', desc: 'Traditional mustard greens tempered with white butter', price: '₹240' }
+      ],
+      breads: [
+        { name: 'Butter Garlic Naan', desc: 'Clay tandoor flatbread with minced garlic and butter', price: '₹60' },
+        { name: 'Amritsari Potato Kulcha', desc: 'Stuffed spiced potato bread served with chole', price: '₹120' },
+        { name: 'Missi Roti', desc: 'Gram flour roti spiced with carom seeds & coriander', price: '₹45' },
+        { name: 'Tandoori Butter Roti', desc: 'Whole wheat roti baked fresh in tandoor', price: '₹30' },
+        { name: 'Lachha Paratha', desc: 'Multi-layered flaky tandoori whole wheat bread', price: '₹55' }
+      ],
+      rice: [
+        { name: 'Hyderabadi Chicken Biryani', desc: 'Fragrant basmati rice dum cooked with marinated chicken', price: '₹320' },
+        { name: 'Veg Dum Biryani', desc: 'Basmati rice cooked with saffron, veggies & cottage cheese', price: '₹260' },
+        { name: 'Jeera Rice', desc: 'Fluffy basmati rice tempered with cumin seeds and ghee', price: '₹160' },
+        { name: 'Steamed Basmati Rice', desc: 'Long grain aromatic basmati rice', price: '₹130' }
+      ],
+      chinese: [
+        { name: 'Chilli Paneer Dry/Gravy', desc: 'Wok tossed paneer with bell peppers and soy sauce', price: '₹270' },
+        { name: 'Veg Hakka Noodles', desc: 'Stir fried noodles tossed with shredded vegetables', price: '₹210' },
+        { name: 'Chicken Manchurian', desc: 'Golden chicken dumplings in tangy soy garlic sauce', price: '₹290' }
+      ],
+      beverages: [
+        { name: 'Punjabi Sweet Malai Lassi', desc: 'Thick chilled sweet yogurt topped with fresh cream', price: '₹90' },
+        { name: 'Masala Chaach (Buttermilk)', desc: 'Spiced salted buttermilk with roasted cumin & mint', price: '₹60' },
+        { name: 'Fresh Jaljeera', desc: 'Refreshing cumin and mint digestive drink', price: '₹50' }
+      ],
+      desserts: [
+        { name: 'Gulab Jamun with Rabri', desc: 'Hot khoya dumplings served with chilled thickened milk', price: '₹120' },
+        { name: 'Matka Kulfi', desc: 'Traditional saffron pistachio pot ice cream', price: '₹100' },
+        { name: 'Moong Dal Halwa', desc: 'Rich Rajasthani lentils halwa cooked in pure desi ghee', price: '₹140' }
+      ]
+    };
+
+    function renderMenu(categoryKey) {
+      const container = document.getElementById('menu-items');
+      const items = MENU_DATA[categoryKey] || [];
+
+      container.innerHTML = items.map(item => `
+        <div class="menu-item-row">
+          <div>
+            <div class="menu-item-title">${item.name}</div>
+            <div class="menu-item-sub">${item.desc}</div>
+          </div>
+          <div class="menu-item-price">${item.price}</div>
+        </div>
+      `).join('');
+    }
+
+    function filterMenu(categoryKey) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderMenu(categoryKey);
+    }
+
+    // Modal Control
+    function openModal(type, dishName = '') {
+      const modal = document.getElementById('booking-modal');
+      const title = document.getElementById('modal-title');
+      const sub = document.getElementById('modal-sub');
+
+      if (type === 'order') {
+        title.innerText = `Order ${dishName}`;
+        sub.innerText = `Place a takeaway or delivery order request for ${dishName}.`;
+      } else {
+        title.innerText = 'Book a Table';
+        sub.innerText = 'Reserve your spot at AK Dhaba for a delicious Punjabi dining experience.';
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('booking-modal').classList.remove('active');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your request has been received. AK Dhaba staff will contact you shortly.');
+      closeModal();
+    }
+
+    // Initial Menu Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderMenu('starters');
+    });
+  </script>
+</body>
+</html>

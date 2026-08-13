@@ -149,6 +149,16 @@ app.delete('/api/tasks/:id', (req, res) => {
 const phoneController = require('./phone-controller');
 const laptopController = require('./laptop-controller');
 
+// AK Dhaba Restaurant Website Route
+app.get('/ak-dhaba', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'ak-dhaba.html'));
+});
+
+// Portfolio Showcase Website Route
+app.get('/portfolio', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'portfolio.html'));
+});
+
 // 3D Solar System Explorer Route
 app.get('/3d', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', '3d-explorer.html'));
