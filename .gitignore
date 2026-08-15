@@ -10,4 +10,6 @@ yarn-debug.log*
 yarn-error.log*
 bin/
 *.zip
+data/leads.json
+
 
