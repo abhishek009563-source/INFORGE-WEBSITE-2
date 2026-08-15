@@ -1,11 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'tasks.json');
+const OWNER_EMAIL = process.env.OWNER_EMAIL || 'abhishek009563@gmail.com';
 
 // Middleware
 app.use(express.json());
@@ -165,6 +168,131 @@ function saveLead(leadData) {
   leads.unshift(leadData);
   fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
 }
+
+// Secure Gym Registration & Email Endpoint
+app.post('/api/gym/register', async (req, res) => {
+  try {
+    const { fullName, phone, email, age, gender, membership, startDate, message, honeypot } = req.body;
+
+    // Anti-Spam Honeypot Check
+    if (honeypot) {
+      return res.status(400).json({ success: false, error: 'Spam submission detected.' });
+    }
+
+    // Server-Side Field Validation
+    if (!fullName || typeof fullName !== 'string' || fullName.trim().length < 2) {
+      return res.status(400).json({ success: false, error: 'Please enter a valid full name.' });
+    }
+
+    const phoneRegex = /^[0-9+\s\-()]{8,20}$/;
+    if (!phone || !phoneRegex.test(phone.trim())) {
+      return res.status(400).json({ success: false, error: 'Please enter a valid phone number (at least 8-10 digits).' });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email.trim())) {
+      return res.status(400).json({ success: false, error: 'Please enter a valid email address.' });
+    }
+
+    const parsedAge = parseInt(age, 10);
+    if (!age || isNaN(parsedAge) || parsedAge < 10 || parsedAge > 100) {
+      return res.status(400).json({ success: false, error: 'Please enter a valid age between 10 and 100.' });
+    }
+
+    const validPlan = membership || 'Starter Plan - ₹1,499';
+    const validGender = gender || 'Not Specified';
+    const validStartDate = startDate || 'Immediate';
+    const validMessage = message ? message.trim() : 'None';
+
+    // Format Email Subject & Body
+    const emailSubject = `New Gym Registration - ${fullName.trim()}`;
+    const emailBody = `NEW GYM REGISTRATION
+====================
+
+Full Name:
+${fullName.trim()}
+
+Phone:
+${phone.trim()}
+
+Email:
+${email.trim()}
+
+Age:
+${parsedAge}
+
+Gender:
+${validGender}
+
+Membership Plan:
+${validPlan}
+
+Preferred Start Date:
+${validStartDate}
+
+Additional Message:
+${validMessage}
+
+====================
+Submitted from:
+Ironforge Fitness Website`;
+
+    // Save Registration Lead to database
+    const leadData = {
+      id: Date.now().toString(),
+      name: fullName.trim(),
+      phone: phone.trim(),
+      email: email.trim(),
+      age: parsedAge,
+      gender: validGender,
+      membership: validPlan,
+      startDate: validStartDate,
+      message: validMessage,
+      source: 'Ironforge Fitness Registration Form',
+      date: new Date().toISOString()
+    };
+    saveLead(leadData);
+
+    // Send Email via Nodemailer if SMTP Credentials Configured in .env
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (smtpUser && smtpPass) {
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.SMTP_PORT || '465', 10),
+        secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465',
+        auth: {
+          user: smtpUser,
+          pass: smtpPass
+        }
+      });
+
+      await transporter.sendMail({
+        from: `"Ironforge Fitness Website" <${smtpUser}>`,
+        to: OWNER_EMAIL,
+        replyTo: email.trim(),
+        subject: emailSubject,
+        text: emailBody
+      });
+      console.log(`✅ LIVE GMAIL SENT to ${OWNER_EMAIL} for ${fullName.trim()}`);
+    } else {
+      console.log(`⚠️ SMTP_PASS not set in .env. Lead saved to database & logged:\n${emailBody}`);
+    }
+
+    return res.json({
+      success: true,
+      message: "Registration submitted successfully! 🎉\nThank you for choosing Ironforge Fitness. We will contact you shortly."
+    });
+
+  } catch (err) {
+    console.error('❌ Registration Server Error:', err);
+    return res.status(500).json({
+      success: false,
+      error: "Something went wrong. Please try again or contact us directly."
+    });
+  }
+});
 
 // Client Enquiry API Endpoint
 app.post('/api/send-enquiry', (req, res) => {

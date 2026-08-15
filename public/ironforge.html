@@ -1375,8 +1375,81 @@
     <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged Gym View">
   </div>
 
+  <!-- Secure Gym Registration Modal -->
+  <div id="register-modal" class="lightbox-modal">
+    <div style="background: #141418; border: 2px solid var(--red-accent); border-radius: 24px; padding: 32px; max-width: 520px; width: 100%; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto;">
+      <button class="lightbox-close" onclick="closeRegisterModal()" style="top: 16px; right: 16px;">✕</button>
+      <h3 style="font-family: var(--font-heading); font-size: 26px; color: var(--white); margin-bottom: 4px;">IRONFORGE GYM REGISTRATION</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Complete your details to start your fitness journey.</p>
+
+      <form id="gym-register-form" onsubmit="handleGymRegister(event)">
+        <!-- Anti-Spam Honeypot Field -->
+        <input type="text" name="honeypot" style="display:none !important;" tabindex="-1" autocomplete="off">
+
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Full Name *</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Phone Number *</label>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="e.g. +91 98765 43210" required>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Email Address *</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="e.g. rahul@gmail.com" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Age *</label>
+            <input type="number" id="reg-age" min="10" max="100" class="form-control" placeholder="e.g. 24" required>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Gender *</label>
+            <select id="reg-gender" class="form-control" style="background: #000; color: #fff;">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Membership Plan *</label>
+            <select id="reg-membership" class="form-control" style="background: #000; color: #fff;">
+              <option value="Starter Plan - ₹1,499 / mo">Starter (₹1,499/mo)</option>
+              <option value="PRO Plan - ₹2,499 / mo" selected>PRO (₹2,499/mo - Popular)</option>
+              <option value="ELITE Plan - ₹4,999 / mo">ELITE (₹4,999/mo)</option>
+              <option value="Free Trial Pass Visit">Free Trial Visit Pass</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Preferred Start Date *</label>
+            <input type="date" id="reg-startdate" class="form-control" style="background: #000; color: #fff;" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Message / Additional Information</label>
+          <textarea id="reg-message" class="form-control" rows="2" placeholder="Any fitness goals, medical conditions, or timing preferences..."></textarea>
+        </div>
+
+        <button type="submit" id="reg-btn-submit" class="btn-submit" style="margin-top: 8px;">
+          SUBMIT REGISTRATION
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Interactive JavaScript Engine -->
   <script>
+    // Set default date to today
+    document.getElementById('reg-startdate').valueAsDate = new Date();
+
     // Lightbox Control
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;
@@ -1386,35 +1459,110 @@
       document.getElementById('lightbox').classList.remove('active');
     }
 
-    // Join Modal / Form Handling
-    function openJoinModal(planName = 'General Membership') {
-      alert(`IRONFORGE FITNESS DEMO:\n\nThank you for choosing ${planName}!\nIn the live customized version, this button will connect directly to your Gym's WhatsApp or online payment gateway.`);
+    // Register Modal Control
+    function openJoinModal(planName = 'PRO Plan - ₹2,499 / mo') {
+      const select = document.getElementById('reg-membership');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value.toLowerCase().includes(planName.toLowerCase().split(' ')[0])) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      document.getElementById('register-modal').classList.add('active');
     }
 
-    async function handleFormSubmit(e) {
+    function closeRegisterModal() {
+      document.getElementById('register-modal').classList.remove('active');
+    }
+
+    // Secure Registration Form Submission
+    async function handleGymRegister(e) {
       e.preventDefault();
-      const form = e.target;
-      const inputs = form.querySelectorAll('input, textarea');
-      const data = {
-        name: inputs[0].value,
-        phone: inputs[1].value,
-        email: inputs[2].value,
-        message: inputs[3] ? inputs[3].value : 'Ironforge Gym Enquiry',
-        source: 'IRONFORGE FITNESS Website'
-      };
+
+      const btn = document.getElementById('reg-btn-submit');
+      const originalText = btn.innerText;
+
+      // Client-Side Validation
+      const fullName = document.getElementById('reg-name').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const age = document.getElementById('reg-age').value.trim();
+      const gender = document.getElementById('reg-gender').value;
+      const membership = document.getElementById('reg-membership').value;
+      const startDate = document.getElementById('reg-startdate').value;
+      const message = document.getElementById('reg-message').value.trim();
+      const honeypot = document.querySelector('input[name="honeypot"]').value;
+
+      if (!fullName || fullName.length < 2) {
+        alert("Please enter a valid full name.");
+        return;
+      }
+
+      if (!phone || phone.replace(/[^0-9]/g, '').length < 8) {
+        alert("Please enter a valid phone number (at least 8-10 digits).");
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      if (!age || parseInt(age) < 10 || parseInt(age) > 100) {
+        alert("Please enter a valid age between 10 and 100.");
+        return;
+      }
+
+      // UI Loading State
+      btn.innerText = "Sending Registration... ⏳";
+      btn.disabled = true;
 
       try {
-        const res = await fetch('/api/send-enquiry', {
+        const response = await fetch('/api/gym/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify({
+            fullName,
+            phone,
+            email,
+            age,
+            gender,
+            membership,
+            startDate,
+            message,
+            honeypot
+          })
         });
-        const result = await res.json();
-        alert('Thank you! Your enquiry has been sent directly to Abhishek (abhishek009563@gmail.com). We will get back to you shortly!');
-        form.reset();
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          alert("Registration submitted successfully! 🎉\nThank you for choosing Ironforge Fitness. We will contact you shortly.");
+          document.getElementById('gym-register-form').reset();
+          document.getElementById('reg-startdate').valueAsDate = new Date();
+          closeRegisterModal();
+        } else {
+          alert(result.error || "Something went wrong. Please try again or contact us directly.");
+        }
       } catch (err) {
-        alert('Thank you! Your enquiry has been recorded.');
+        console.error("Registration submit error:", err);
+        alert("Something went wrong. Please try again or contact us directly.");
+      } finally {
+        btn.innerText = originalText;
+        btn.disabled = false;
       }
+    }
+
+    // Contact Form Handler
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const inputs = e.target.querySelectorAll('input, textarea');
+      openJoinModal('General Enquiry');
+      document.getElementById('reg-name').value = inputs[0].value;
+      document.getElementById('reg-phone').value = inputs[1].value;
+      document.getElementById('reg-email').value = inputs[2].value;
+      if (inputs[3]) document.getElementById('reg-message').value = inputs[3].value;
     }
 
     // Mobile Nav Toggle
