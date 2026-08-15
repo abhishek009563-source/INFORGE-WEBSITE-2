@@ -1518,33 +1518,66 @@
       btn.innerText = "Sending Registration... ⏳";
       btn.disabled = true;
 
+      const emailSubject = `New Gym Registration - ${fullName}`;
+      const emailBody = `NEW GYM REGISTRATION
+====================
+
+Full Name:
+${fullName}
+
+Phone:
+${phone}
+
+Email:
+${email}
+
+Age:
+${age}
+
+Gender:
+${gender}
+
+Membership Plan:
+${membership}
+
+Preferred Start Date:
+${startDate}
+
+Additional Message:
+${message || 'None'}
+
+====================
+Submitted from:
+Ironforge Fitness Website`;
+
       try {
-        const response = await fetch('/api/gym/register', {
+        // 1. Send 24/7 Cloud Email API directly to abhishek009563@gmail.com
+        await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            fullName,
-            phone,
-            email,
-            age,
-            gender,
-            membership,
-            startDate,
-            message,
-            honeypot
+            access_key: 'b9472f88-d6c5-433b-a25e-5b1a37c95e1e',
+            email: 'abhishek009563@gmail.com',
+            subject: emailSubject,
+            message: emailBody,
+            from_name: 'Ironforge Fitness Website',
+            replyto: email
           })
         });
 
-        const result = await response.json();
+        // 2. Backup post to local backend endpoint if available
+        try {
+          await fetch('/api/gym/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fullName, phone, email, age, gender, membership, startDate, message, honeypot })
+          });
+        } catch (e) {}
 
-        if (response.ok && result.success) {
-          alert("Registration submitted successfully! 🎉\nThank you for choosing Ironforge Fitness. We will contact you shortly.");
-          document.getElementById('gym-register-form').reset();
-          document.getElementById('reg-startdate').valueAsDate = new Date();
-          closeRegisterModal();
-        } else {
-          alert(result.error || "Something went wrong. Please try again or contact us directly.");
-        }
+        alert("Registration submitted successfully! 🎉\nThank you for choosing Ironforge Fitness. We will contact you shortly.");
+        document.getElementById('gym-register-form').reset();
+        document.getElementById('reg-startdate').valueAsDate = new Date();
+        closeRegisterModal();
       } catch (err) {
         console.error("Registration submit error:", err);
         alert("Something went wrong. Please try again or contact us directly.");
