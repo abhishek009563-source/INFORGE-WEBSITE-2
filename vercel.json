@@ -1,15 +1,16 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
-  ],
+  "cleanUrls": true,
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.js"
-    }
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/ironforge", "dest": "/public/ironforge.html" },
+    { "src": "/gym", "dest": "/public/ironforge.html" },
+    { "src": "/hairable", "dest": "/public/hairable.html" },
+    { "src": "/ak-dhaba", "dest": "/public/ak-dhaba.html" },
+    { "src": "/agency", "dest": "/public/agency-pitch.html" },
+    { "src": "/gbp", "dest": "/public/gbp-optimizer.html" },
+    { "src": "/inbox", "dest": "/public/inbox.html" },
+    { "src": "/portfolio", "dest": "/public/portfolio.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRONFORGE FITNESS — Build Your Strongest Self | Delhi, India</title>
+  <meta name="description" content="IRONFORGE FITNESS is Delhi's premier strength & fitness gym. State-of-the-art equipment, certified personal trainers, group classes, & customized diet plans.">
+
+  <!-- Google Fonts: Outfit, Space Grotesk, Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0c;
+      --card-bg: #141418;
+      --card-hover: #1c1c22;
+      --card-border: rgba(239, 68, 68, 0.2);
+      --red-accent: #ef4444;
+      --red-glow: rgba(239, 68, 68, 0.4);
+      --red-dark: #991b1b;
+      --orange-accent: #f97316;
+      --metallic: #9ca3af;
+      --white: #ffffff;
+      --text-muted: #a1a1aa;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-dark);
+      font-family: var(--font-body);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Sticky Navigation Header */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(239, 68, 68, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--red-dark), #450a0a);
+      border: 1px solid var(--red-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red-accent);
+      font-size: 26px;
+      box-shadow: 0 0 15px var(--red-glow);
+    }
+
+    .brand-text {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .brand-text span {
+      color: var(--red-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--metallic);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.25s ease;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover {
+      color: var(--red-accent);
+    }
+
+    .btn-nav-join {
+      background: linear-gradient(135deg, var(--red-accent), var(--red-dark));
+      color: var(--white);
+      border: 1px solid var(--red-accent);
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px var(--red-glow);
+      transition: all 0.3s ease;
+    }
+
+    .btn-nav-join:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(239, 68, 68, 0.6);
+    }
+
+    .mobile-hamburger {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--white);
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 100px;
+      background: linear-gradient(180deg, rgba(10, 10, 12, 0.65) 0%, rgba(10, 10, 12, 0.98) 100%),
+                  url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(239, 68, 68, 0.15) 0%, rgba(10, 10, 12, 0.9) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 900px;
+      padding: 40px 24px;
+    }
+
+    .trust-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid var(--red-accent);
+      color: var(--red-accent);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 8px 22px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 68px;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+
+    .hero-title span {
+      color: var(--red-accent);
+      background: linear-gradient(135deg, var(--red-accent), var(--orange-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subheading {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--metallic);
+      margin-bottom: 12px;
+    }
+
+    .hero-supporting {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 36px auto;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--red-accent), var(--red-dark));
+      color: var(--white);
+      border: 1px solid var(--red-accent);
+      padding: 16px 36px;
+      border-radius: 14px;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px var(--red-glow);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(239, 68, 68, 0.7);
+    }
+
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--metallic);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 14px;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-hero-secondary:hover {
+      border-color: var(--red-accent);
+      color: var(--red-accent);
+      background: rgba(239, 68, 68, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .scroll-indicator {
+      margin-top: 40px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 1px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* Statistics Section */
+    .stats-section {
+      background: #0f0f13;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      padding: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .stat-num {
+      font-family: var(--font-heading);
+      font-size: 46px;
+      font-weight: 900;
+      color: var(--red-accent);
+      margin-bottom: 6px;
+    }
+
+    .stat-lbl {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--metallic);
+      text-transform: uppercase;
+    }
+
+    /* Section Global Headers */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px auto;
+    }
+
+    .section-tag {
+      color: var(--red-accent);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 44px; }
+    }
+
+    .about-image-box {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .about-image-box img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .about-image-box:hover img {
+      transform: scale(1.04);
+    }
+
+    .about-text h3 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .features-checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .check-icon {
+      color: var(--red-accent);
+      font-size: 20px;
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.35s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--red-accent);
+      box-shadow: 0 20px 40px var(--red-glow);
+    }
+
+    .pricing-card.popular {
+      background: linear-gradient(180deg, #1f1215 0%, #141418 100%);
+      border: 2px solid var(--red-accent);
+      box-shadow: 0 20px 50px rgba(239, 68, 68, 0.3);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--red-accent), var(--orange-accent));
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 18px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px var(--red-glow);
+    }
+
+    .plan-name {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .plan-price {
+      font-family: var(--font-heading);
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--red-accent);
+      margin-bottom: 24px;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .plan-features li span {
+      color: var(--red-accent);
+    }
+
+    .demo-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 30px;
+      font-style: italic;
+    }
+
+    /* Why Choose Us Cards */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    .why-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .why-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--red-accent);
+    }
+
+    .why-icon {
+      font-size: 38px;
+      margin-bottom: 16px;
+    }
+
+    .why-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .why-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Gallery Grid & Lightbox */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .gallery-item {
+      position: relative;
+      height: 240px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 12, 0.7);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* Reviews Section */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stars {
+      color: #f59e0b;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 2px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .reviewer-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--white);
+    }
+
+    /* Location & Contact */
+    .location-contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 36px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .info-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid var(--red-accent);
+      color: var(--red-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--red-accent);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--red-accent), var(--red-dark));
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Final Dramatic CTA */
+    .final-cta-section {
+      position: relative;
+      padding: 120px 0;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(10, 10, 12, 0.8) 0%, rgba(10, 10, 12, 0.95) 100%),
+                  url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+
+    .final-cta-title {
+      font-family: var(--font-heading);
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    /* Floating WhatsApp Button */
+    .btn-floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #25d366;
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-floating-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+    }
+
+    /* Back To Top Button */
+    .btn-back-top {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(20, 20, 24, 0.85);
+      border: 1px solid var(--red-accent);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(16px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 16px;
+      border: 1px solid var(--red-accent);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: #050507;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 60px 0 30px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .location-contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--red-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation Header -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon-box">
+          <span class="material-symbols-outlined">fitness_center</span>
+        </div>
+        <div class="brand-text">IRON<span>FORGE</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#membership" class="nav-link">Membership</a></li>
+        <li><a href="#why-us" class="nav-link">Why Us</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#location" class="nav-link">Location</a></li>
+      </ul>
+
+      <button class="btn-nav-join" onclick="openJoinModal()">
+        JOIN NOW
+      </button>
+
+      <button class="mobile-hamburger" onclick="toggleMobileNav()">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="trust-indicator">
+        <span class="material-symbols-outlined" style="font-size: 18px;">bolt</span>
+        500+ MEMBERS • MODERN EQUIPMENT • EXPERT TRAINERS
+      </div>
+
+      <h1 class="hero-title">BUILD YOUR<br><span>STRONGEST SELF.</span></h1>
+      <div class="hero-subheading">Train harder. Get stronger. Become better.</div>
+      <p class="hero-supporting">Premium equipment, certified expert trainers, and a high-energy motivating environment designed to help you crush your fitness goals.</p>
+
+      <div class="hero-buttons">
+        <a href="#membership" class="btn-hero-primary">
+          <span class="material-symbols-outlined">card_membership</span>
+          VIEW MEMBERSHIPS
+        </a>
+        <button class="btn-hero-secondary" onclick="openJoinModal('Free Pass Visit')">
+          <span class="material-symbols-outlined">calendar_today</span>
+          BOOK A FREE VISIT
+        </button>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>SCROLL TO EXPLORE</span>
+        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GYM STATISTICS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" data-target="500">500+</div>
+          <div class="stat-lbl">Active Members</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-num" data-target="20">20+</div>
+          <div class="stat-lbl">Expert Trainers</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-num" data-target="50">50+</div>
+          <div class="stat-lbl">Equipment Stations</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-num" data-target="8">8+</div>
+          <div class="stat-lbl">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT THE GYM -->
+  <section id="about" class="section container">
+    <div class="about-grid">
+      <div class="about-image-box">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80" alt="Ironforge Gym Training Floor">
+      </div>
+
+      <div class="about-text">
+        <span class="section-tag">// OUR PHILOSOPHY</span>
+        <h3>MORE THAN A GYM.</h3>
+        <p>IRONFORGE FITNESS is built for people who are serious about becoming stronger, healthier and more confident. Whether you're just starting your fitness journey or you're an experienced athlete, our gym gives you the environment, equipment and support you need.</p>
+
+        <div class="features-checklist">
+          <div class="checklist-item">
+            <span class="material-symbols-outlined check-icon">check_circle</span>
+            Premium Equipment
+          </div>
+          <div class="checklist-item">
+            <span class="material-symbols-outlined check-icon">check_circle</span>
+            Certified Trainers
+          </div>
+          <div class="checklist-item">
+            <span class="material-symbols-outlined check-icon">check_circle</span>
+            Clean & Hygienic
+          </div>
+          <div class="checklist-item">
+            <span class="material-symbols-outlined check-icon">check_circle</span>
+            Personalized Training
+          </div>
+          <div class="checklist-item">
+            <span class="material-symbols-outlined check-icon">check_circle</span>
+            Friendly Community
+          </div>
+          <div class="checklist-item">
+            <span class="material-symbols-outlined check-icon">check_circle</span>
+            Flexible Memberships
+          </div>
+        </div>
+
+        <a href="#gallery" class="btn-hero-primary" style="padding: 12px 28px; font-size: 14px;">
+          EXPLORE OUR GYM <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP PLANS -->
+  <section id="membership" class="section container" style="background: rgba(255, 255, 255, 0.01);">
+    <div class="section-header">
+      <span class="section-tag">// PRICING PACKAGES</span>
+      <h2 class="section-title">CHOOSE YOUR MEMBERSHIP</h2>
+      <p class="section-desc">Simple plans. Serious results.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Plan 1: Starter -->
+      <div class="pricing-card">
+        <div class="plan-name">STARTER</div>
+        <div class="plan-price">₹1,499 <span>/ mo</span></div>
+        <ul class="plan-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Full Gym Access</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Cardio Area Access</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Strength Training Area</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Locker Room Access</li>
+        </ul>
+        <button class="btn-hero-secondary" style="width: 100%; justify-content: center;" onclick="openJoinModal('Starter Plan - ₹1,499')">
+          GET STARTED
+        </button>
+      </div>
+
+      <!-- Plan 2: Pro (Highlighted) -->
+      <div class="pricing-card popular">
+        <div class="popular-badge">MOST POPULAR</div>
+        <div class="plan-name">PRO</div>
+        <div class="plan-price">₹2,499 <span>/ mo</span></div>
+        <ul class="plan-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Everything in Starter</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Group Fitness Classes</li>
+          <li><span class="material-symbols-outlined">check_circle</span> 1 Personal Training Session</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Customized Diet Guidance</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Priority Locker Support</li>
+        </ul>
+        <button class="btn-hero-primary" style="width: 100%; justify-content: center;" onclick="openJoinModal('PRO Plan - ₹2,499')">
+          JOIN PRO NOW
+        </button>
+      </div>
+
+      <!-- Plan 3: Elite -->
+      <div class="pricing-card">
+        <div class="plan-name">ELITE</div>
+        <div class="plan-price">₹4,999 <span>/ mo</span></div>
+        <ul class="plan-features">
+          <li><span class="material-symbols-outlined">check_circle</span> Everything in Pro</li>
+          <li><span class="material-symbols-outlined">check_circle</span> 4 Personal Training Sessions</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Customized Workout Plan</li>
+          <li><span class="material-symbols-outlined">check_circle</span> Tailored Diet Plan</li>
+          <li><span class="material-symbols-outlined">check_circle</span> 24/7 VIP Trainer Support</li>
+        </ul>
+        <button class="btn-hero-secondary" style="width: 100%; justify-content: center;" onclick="openJoinModal('Elite Plan - ₹4,999')">
+          GO ELITE
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-note">
+      * Note: Plans shown for demonstration purposes. Final pricing can be customized for the gym owner.
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why-us" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// GYM ADVANTAGES</span>
+      <h2 class="section-title">WHY TRAIN WITH US?</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🏋️</div>
+        <h4 class="why-title">PREMIUM EQUIPMENT</h4>
+        <p class="why-desc">Modern equipment for strength, powerlifting, and cardio conditioning.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">💪</div>
+        <h4 class="why-title">EXPERT TRAINERS</h4>
+        <p class="why-desc">Experienced certified trainers to guide your progress and form safety.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🔥</div>
+        <h4 class="why-title">RESULTS-FOCUSED</h4>
+        <p class="why-desc">Training programs designed around your personal fat loss & muscle goals.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🧼</div>
+        <h4 class="why-title">CLEAN & HYGIENIC</h4>
+        <p class="why-desc">A spotless, sanitized, and comfortable environment for everyday training.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">👥</div>
+        <h4 class="why-title">COMMUNITY</h4>
+        <p class="why-desc">Train alongside driven, supportive, and highly motivated fitness enthusiasts.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">⏰</div>
+        <h4 class="why-title">FLEXIBLE HOURS</h4>
+        <p class="why-desc">Open 6:00 AM to 10:00 PM so you can train whenever it fits your routine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// GYM SHOWCASE</span>
+      <h2 class="section-title">INSIDE IRONFORGE</h2>
+      <p class="section-desc">Click any photo below to inspect full resolution view.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Main Gym Floor">
+        <div class="gallery-overlay">Main Gym Floor</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80" alt="Weight Section">
+        <div class="gallery-overlay">Free Weights Section</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1576678927484-cc909957088c?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1576678927484-cc909957088c?auto=format&fit=crop&w=600&q=80" alt="Cardio Area">
+        <div class="gallery-overlay">Cardio & Treadmills</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80" alt="Dumbbell Rack">
+        <div class="gallery-overlay">Dumbbells & Benches</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Personal Training">
+        <div class="gallery-overlay">Personal Training</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80" alt="Gym Interior">
+        <div class="gallery-overlay">Modern Gym Interior</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Group Workout">
+        <div class="gallery-overlay">Group Workout Classes</div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=600&q=80" alt="Strength Equipment">
+        <div class="gallery-overlay">Heavy Squat Racks</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// MEMBER TESTIMONIALS</span>
+      <h2 class="section-title">WHAT OUR MEMBERS SAY</h2>
+      <p class="section-desc">* Demo testimonials placeholder structure</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Great equipment, friendly trainers and an amazing atmosphere. I've been training here for months and absolutely love it."</p>
+        <div class="reviewer-name">— Rahul M.</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"One of the best gyms I've trained at. The staff actually cares about helping members reach their goals."</p>
+        <div class="reviewer-name">— Arjun S.</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Clean, modern and well-equipped. Highly recommended for both beginners and experienced lifters."</p>
+        <div class="reviewer-name">— Neha S.</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The trainers are supportive and the environment keeps me motivated every single day."</p>
+        <div class="reviewer-name">— Karan M.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION & CONTACT -->
+  <section id="location" class="section container">
+    <div class="section-header">
+      <span class="section-tag">// FIND US & GET IN TOUCH</span>
+      <h2 class="section-title">CONVENIENTLY LOCATED IN DELHI</h2>
+    </div>
+
+    <div class="location-contact-grid">
+      <!-- Location Card -->
+      <div class="contact-card">
+        <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--white); margin-bottom: 20px;">FIND US</h3>
+
+        <div class="info-row">
+          <div class="info-icon-box">
+            <span class="material-symbols-outlined">location_on</span>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Address</div>
+            <div style="font-size: 16px; font-weight: 600;">[GYM ADDRESS Placeholder], Delhi, India</div>
+            <div style="font-size: 13px; color: var(--red-accent); margin-top: 4px;">Conveniently located near metro & main road</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon-box">
+            <span class="material-symbols-outlined">schedule</span>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Opening Hours</div>
+            <div style="font-size: 15px; font-weight: 600;">Monday – Saturday: 6:00 AM – 10:00 PM</div>
+            <div style="font-size: 15px; font-weight: 600;">Sunday: 7:00 AM – 2:00 PM</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon-box">
+            <span class="material-symbols-outlined">call</span>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Phone & WhatsApp</div>
+            <div style="font-size: 16px; font-weight: 600;">[+91 98765 43210 Placeholder]</div>
+          </div>
+        </div>
+
+        <button class="btn-hero-primary" style="width: 100%; justify-content: center;" onclick="alert('Map Directions Demo')">
+          <span class="material-symbols-outlined">directions</span> GET DIRECTIONS
+        </button>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-card">
+        <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--white); margin-bottom: 8px;">READY TO START?</h3>
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Your strongest version starts with one decision. Send an enquiry for a free pass visit.</p>
+
+        <form onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" class="form-control" placeholder="Phone Number" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email Address" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" rows="3" placeholder="Message (e.g. Free Visit Pass / Membership Query)"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            SEND ENQUIRY
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DRAMATIC CTA -->
+  <section class="final-cta-section">
+    <div class="container" style="position: relative; z-index: 10;">
+      <div class="section-tag">// NO EXCUSES</div>
+      <h2 class="final-cta-title">STOP WAITING.<br>START TRAINING.</h2>
+      <p style="font-size: 18px; color: var(--metallic); margin-bottom: 32px;">Your goals won't achieve themselves.</p>
+
+      <div class="hero-buttons">
+        <button class="btn-hero-primary" onclick="openJoinModal('Final CTA')">
+          JOIN NOW
+        </button>
+        <a href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20joining%20Ironforge%20Fitness.%20I'd%20like%20to%20know%20more%20about%20the%20membership%20plans." target="_blank" class="btn-hero-secondary" style="background: #25d366; border-color: #25d366;">
+          WHATSAPP US
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 16px;">
+            <div class="brand-icon-box"><span class="material-symbols-outlined">fitness_center</span></div>
+            <div class="brand-text">IRON<span>FORGE</span></div>
+          </div>
+          <p style="font-size: 14px; color: var(--text-muted); max-width: 320px;">Delhi's premier strength and fitness gym. Premium equipment, certified trainers, and serious results.</p>
+        </div>
+
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 16px; color: var(--white); margin-bottom: 16px;">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#membership">Membership Plans</a></li>
+            <li><a href="#gallery">Inside Gym</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 16px; color: var(--white); margin-bottom: 16px;">Opening Hours</h4>
+          <ul class="footer-links">
+            <li>Mon - Sat: 6:00 AM - 10:00 PM</li>
+            <li>Sunday: 7:00 AM - 2:00 PM</li>
+            <li>Open All 7 Days</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 16px; color: var(--white); margin-bottom: 16px;">Contact Developer</h4>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 6px;">📞 [+91 98765 43210 Placeholder]</p>
+          <p style="font-size: 14px; color: var(--red-accent); margin-bottom: 6px; font-weight: 700;">📧 abhishek009563@gmail.com</p>
+          <p style="font-size: 14px; color: var(--text-muted);">📍 Delhi, India</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; font-size: 13px; color: var(--text-muted); padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.06);">
+        © 2026 Ironforge Fitness. All rights reserved. | Demo Commercial Gym Website
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20joining%20Ironforge%20Fitness.%20I'd%20like%20to%20know%20more%20about%20the%20membership%20plans." target="_blank" class="btn-floating-whatsapp">
+    <span class="material-symbols-outlined">chat</span> Chat With Us
+  </a>
+
+  <!-- Back To Top Button -->
+  <button class="btn-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <span class="material-symbols-outlined">arrow_upward</span>
+  </button>
+
+  <!-- Image Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged Gym View">
+  </div>
+
+  <!-- Secure Gym Registration Modal -->
+  <div id="register-modal" class="lightbox-modal">
+    <div style="background: #141418; border: 2px solid var(--red-accent); border-radius: 24px; padding: 32px; max-width: 520px; width: 100%; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto;">
+      <button class="lightbox-close" onclick="closeRegisterModal()" style="top: 16px; right: 16px;">✕</button>
+      <h3 style="font-family: var(--font-heading); font-size: 26px; color: var(--white); margin-bottom: 4px;">IRONFORGE GYM REGISTRATION</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Complete your details to start your fitness journey.</p>
+
+      <form id="gym-register-form" onsubmit="handleGymRegister(event)">
+        <!-- Anti-Spam Honeypot Field -->
+        <input type="text" name="honeypot" style="display:none !important;" tabindex="-1" autocomplete="off">
+
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Full Name *</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Phone Number *</label>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="e.g. +91 98765 43210" required>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Email Address *</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="e.g. rahul@gmail.com" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Age *</label>
+            <input type="number" id="reg-age" min="10" max="100" class="form-control" placeholder="e.g. 24" required>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Gender *</label>
+            <select id="reg-gender" class="form-control" style="background: #000; color: #fff;">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Membership Plan *</label>
+            <select id="reg-membership" class="form-control" style="background: #000; color: #fff;">
+              <option value="Starter Plan - ₹1,499 / mo">Starter (₹1,499/mo)</option>
+              <option value="PRO Plan - ₹2,499 / mo" selected>PRO (₹2,499/mo - Popular)</option>
+              <option value="ELITE Plan - ₹4,999 / mo">ELITE (₹4,999/mo)</option>
+              <option value="Free Trial Pass Visit">Free Trial Visit Pass</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Preferred Start Date *</label>
+            <input type="date" id="reg-startdate" class="form-control" style="background: #000; color: #fff;" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Message / Additional Information</label>
+          <textarea id="reg-message" class="form-control" rows="2" placeholder="Any fitness goals, medical conditions, or timing preferences..."></textarea>
+        </div>
+
+        <button type="submit" id="reg-btn-submit" class="btn-submit" style="margin-top: 8px;">
+          SUBMIT REGISTRATION
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    // Set default date to today
+    document.getElementById('reg-startdate').valueAsDate = new Date();
+
+    // Lightbox Control
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Register Modal Control
+    function openJoinModal(planName = 'PRO Plan - ₹2,499 / mo') {
+      const select = document.getElementById('reg-membership');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value.toLowerCase().includes(planName.toLowerCase().split(' ')[0])) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      document.getElementById('register-modal').classList.add('active');
+    }
+
+    function closeRegisterModal() {
+      document.getElementById('register-modal').classList.remove('active');
+    }
+
+    // Secure Registration Form Submission
+    async function handleGymRegister(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('reg-btn-submit');
+      const originalText = btn.innerText;
+
+      // Client-Side Validation
+      const fullName = document.getElementById('reg-name').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const age = document.getElementById('reg-age').value.trim();
+      const gender = document.getElementById('reg-gender').value;
+      const membership = document.getElementById('reg-membership').value;
+      const startDate = document.getElementById('reg-startdate').value;
+      const message = document.getElementById('reg-message').value.trim();
+      const honeypot = document.querySelector('input[name="honeypot"]').value;
+
+      if (!fullName || fullName.length < 2) {
+        alert("Please enter a valid full name.");
+        return;
+      }
+
+      if (!phone || phone.replace(/[^0-9]/g, '').length < 8) {
+        alert("Please enter a valid phone number (at least 8-10 digits).");
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      if (!age || parseInt(age) < 10 || parseInt(age) > 100) {
+        alert("Please enter a valid age between 10 and 100.");
+        return;
+      }
+
+      // UI Loading State & Prevent Duplicate Submissions
+      btn.innerText = "Sending Registration... ⏳";
+      btn.disabled = true;
+
+      const emailSubject = `New Ironforge Fitness Registration - ${fullName}`;
+      const emailBody = `NEW GYM REGISTRATION
+====================
+
+Full Name:
+${fullName}
+
+Phone:
+${phone}
+
+Email:
+${email}
+
+Age:
+${age}
+
+Gender:
+${gender}
+
+Membership Plan:
+${membership}
+
+Preferred Start Date:
+${startDate}
+
+Additional Message:
+${message || 'None'}
+
+====================
+Submitted from:
+Ironforge Fitness Website`;
+
+      try {
+        // Submit directly to Web3Forms Cloud API using User's Access Key
+        const web3Res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: '77490d4b-8c81-4d1c-927e-3447016bf3f7',
+            subject: emailSubject,
+            name: fullName,
+            email: email,
+            phone: phone,
+            age: age,
+            gender: gender,
+            membership: membership,
+            startDate: startDate,
+            message: emailBody,
+            from_name: 'Ironforge Fitness Website',
+            replyto: email
+          })
+        });
+
+        const web3Result = await web3Res.json();
+
+        // Also record to local backend database if running
+        try {
+          await fetch('/api/gym/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fullName, phone, email, age, gender, membership, startDate, message, honeypot })
+          });
+        } catch (e) {}
+
+        // Verify Web3Forms confirmation before showing success alert
+        if (web3Res.ok && web3Result.success) {
+          alert("Registration submitted successfully! 🎉\nThank you for choosing Ironforge Fitness. We will contact you shortly.");
+          document.getElementById('gym-register-form').reset();
+          document.getElementById('reg-startdate').valueAsDate = new Date();
+          closeRegisterModal();
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        console.error("Registration submit error:", err);
+        alert("Something went wrong. Please try again.");
+      } finally {
+        btn.innerText = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    // Contact Form Handler
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const inputs = e.target.querySelectorAll('input, textarea');
+      openJoinModal('General Enquiry');
+      document.getElementById('reg-name').value = inputs[0].value;
+      document.getElementById('reg-phone').value = inputs[1].value;
+      document.getElementById('reg-email').value = inputs[2].value;
+      if (inputs[3]) document.getElementById('reg-message').value = inputs[3].value;
+    }
+
+    // Mobile Nav Toggle
+    function toggleMobileNav() {
+      const links = document.querySelector('.nav-links');
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+</body>
+</html>
