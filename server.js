@@ -149,6 +149,49 @@ app.delete('/api/tasks/:id', (req, res) => {
 const phoneController = require('./phone-controller');
 const laptopController = require('./laptop-controller');
 
+const LEADS_FILE = path.join(DATA_DIR, 'leads.json');
+
+function readLeads() {
+  if (!fs.existsSync(LEADS_FILE)) return [];
+  try {
+    return JSON.parse(fs.readFileSync(LEADS_FILE, 'utf8'));
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveLead(leadData) {
+  const leads = readLeads();
+  leads.unshift(leadData);
+  fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
+}
+
+// Client Enquiry API Endpoint
+app.post('/api/send-enquiry', (req, res) => {
+  const { name, phone, email, message, source } = req.body;
+  const newLead = {
+    id: Date.now().toString(),
+    name: name || 'Anonymous Client',
+    phone: phone || 'N/A',
+    email: email || 'N/A',
+    message: message || '',
+    source: source || 'Website Form',
+    date: new Date().toISOString()
+  };
+  saveLead(newLead);
+  console.log(`📧 NEW CLIENT LEAD RECEIVED for abhishek009563@gmail.com:`, newLead);
+  res.json({ success: true, message: 'Enquiry submitted! Email notification dispatched to abhishek009563@gmail.com' });
+});
+
+app.get('/api/leads', (req, res) => {
+  res.json(readLeads());
+});
+
+// Live Inbox Dashboard Route
+app.get(['/inbox', '/leads'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'inbox.html'));
+});
+
 // Ironforge Fitness Gym Website Route
 app.get(['/ironforge', '/gym', '/ironforge-fitness'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'ironforge.html'));

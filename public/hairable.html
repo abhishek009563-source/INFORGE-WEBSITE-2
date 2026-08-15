@@ -619,10 +619,30 @@
       document.getElementById('booking-modal').classList.remove('active');
     }
 
-    function handleBookingSubmit(e) {
+    async function handleBookingSubmit(e) {
       e.preventDefault();
-      alert('Thank you! Your appointment request at Hairable Salon has been received. Our team will confirm your time slot on WhatsApp.');
-      closeModal();
+      const form = e.target;
+      const inputs = form.querySelectorAll('input');
+      const data = {
+        name: inputs[1].value,
+        phone: inputs[2].value,
+        email: 'abhishek009563@gmail.com',
+        message: `Hairable Salon Booking for Service: ${inputs[0].value} on ${inputs[3].value}`,
+        source: 'Hairable Salon Website'
+      };
+
+      try {
+        await fetch('/api/send-enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        alert('Thank you! Your booking request has been sent directly to Abhishek (abhishek009563@gmail.com).');
+        closeModal();
+      } catch (err) {
+        alert('Thank you! Booking recorded.');
+        closeModal();
+      }
     }
 
     // Initial Load

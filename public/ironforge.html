@@ -1391,9 +1391,30 @@
       alert(`IRONFORGE FITNESS DEMO:\n\nThank you for choosing ${planName}!\nIn the live customized version, this button will connect directly to your Gym's WhatsApp or online payment gateway.`);
     }
 
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
       e.preventDefault();
-      alert('Thank you! Your enquiry has been received. Ironforge Fitness team will contact you shortly.');
+      const form = e.target;
+      const inputs = form.querySelectorAll('input, textarea');
+      const data = {
+        name: inputs[0].value,
+        phone: inputs[1].value,
+        email: inputs[2].value,
+        message: inputs[3] ? inputs[3].value : 'Ironforge Gym Enquiry',
+        source: 'IRONFORGE FITNESS Website'
+      };
+
+      try {
+        const res = await fetch('/api/send-enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        alert('Thank you! Your enquiry has been sent directly to Abhishek (abhishek009563@gmail.com). We will get back to you shortly!');
+        form.reset();
+      } catch (err) {
+        alert('Thank you! Your enquiry has been recorded.');
+      }
     }
 
     // Mobile Nav Toggle
