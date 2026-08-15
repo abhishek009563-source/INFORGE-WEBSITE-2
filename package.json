@@ -2,9 +2,10 @@
   "name": "ant-kanban-board",
   "version": "1.0.0",
   "description": "A simple, premium full-stack Kanban task manager",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js",
+    "build": "node -c index.js"
   },
   "keywords": [
     "kanban",
