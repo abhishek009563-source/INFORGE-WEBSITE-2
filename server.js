@@ -341,8 +341,8 @@ app.get(['/inbox', '/leads'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'inbox.html'));
 });
 
-// Ironforge Fitness Gym Website Route
-app.get(['/ironforge', '/gym', '/ironforge-fitness'], (req, res) => {
+// Ironforge Fitness Gym Website Route (Root & Aliases)
+app.get(['/', '/ironforge', '/gym', '/ironforge-fitness'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'ironforge.html'));
 });
 
