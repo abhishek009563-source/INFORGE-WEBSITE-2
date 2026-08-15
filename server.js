@@ -149,6 +149,36 @@ app.delete('/api/tasks/:id', (req, res) => {
 const phoneController = require('./phone-controller');
 const laptopController = require('./laptop-controller');
 
+// Ironforge Fitness Gym Website Route
+app.get(['/ironforge', '/gym', '/ironforge-fitness'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'ironforge.html'));
+});
+
+// Hairable Salon Commercial Website Route
+app.get(['/hairable', '/hairable-salon'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'hairable.html'));
+});
+
+// Barber & Hair Salon Website Demo Route
+app.get(['/barber', '/salon'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'barber.html'));
+});
+
+// Freelance Agency Client Outreach Portal Route
+app.get(['/agency', '/freelance'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'agency-pitch.html'));
+});
+
+// Google Business Profile Optimizer Route
+app.get(['/gbp', '/google-business'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'gbp-optimizer.html'));
+});
+
+// Anamika Special Website Route
+app.get('/anamika', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'anamika.html'));
+});
+
 // AK Dhaba Restaurant Website Route
 app.get('/ak-dhaba', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'ak-dhaba.html'));

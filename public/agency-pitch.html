@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelance Agency Command Center — Local Business Client Outreach</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-green: #22c55e;
+      --accent-cyan: #38bdf8;
+      --accent-gold: #f59e0b;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-main: 'Outfit', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      font-family: var(--font-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(34, 197, 94, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(56, 189, 248, 0.14) 0%, transparent 40%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 20px 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      font-size: 36px;
+      color: var(--accent-green);
+    }
+
+    .brand h1 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-nav:hover {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    /* Target Niche Grid Selector */
+    .niche-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 1024px) {
+      .niche-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .niche-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .niche-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .niche-card:hover, .niche-card.active {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: var(--accent-green);
+      transform: translateY(-3px);
+    }
+
+    .niche-icon {
+      font-size: 28px;
+      color: var(--accent-green);
+    }
+
+    .niche-name {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* Main Section Grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-green);
+    }
+
+    /* Form Controls */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-family: var(--font-main);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-green);
+    }
+
+    .btn-action {
+      background: var(--accent-green);
+      color: #070b14;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-action:hover {
+      background: #4ade80;
+    }
+
+    .output-box {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      font-size: 14px;
+      color: #4ade80;
+      line-height: 1.6;
+      white-space: pre-line;
+      font-family: monospace;
+    }
+
+    /* Lead Pipeline Table */
+    .lead-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .lead-table th, .lead-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .lead-table th {
+      color: var(--text-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .badge-status {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-new { background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); }
+    .status-contacted { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
+    .status-won { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="material-symbols-outlined brand-icon">monetization_on</span>
+        <div>
+          <h1>Freelance Web Agency Command Center</h1>
+          <p>Client Prospecting, High-Converting Outreach & Website Proposal Hub</p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="/ak-dhaba" class="btn-nav">
+          <span class="material-symbols-outlined">restaurant</span>
+          AK Dhaba Demo
+        </a>
+        <a href="/gbp" class="btn-nav">
+          <span class="material-symbols-outlined">storefront</span>
+          GBP Tool
+        </a>
+        <a href="/portfolio" class="btn-nav">
+          <span class="material-symbols-outlined">hub</span>
+          Portfolio
+        </a>
+      </div>
+    </header>
+
+    <!-- Niche Selector -->
+    <div style="text-align: center; margin-top: 10px;">
+      <h3 style="font-family: var(--font-heading); font-size: 18px; margin-bottom: 12px; color: var(--text-muted);">Select Target Client Niche:</h3>
+      <div class="niche-grid">
+        <div class="niche-card active" onclick="selectNiche('dentist')">
+          <span class="material-symbols-outlined niche-icon">medical_services</span>
+          <span class="niche-name">Dentists & Clinics</span>
+        </div>
+
+        <div class="niche-card" onclick="selectNiche('gym')">
+          <span class="material-symbols-outlined niche-icon">fitness_center</span>
+          <span class="niche-name">Gyms & Fitness</span>
+        </div>
+
+        <div class="niche-card" onclick="selectNiche('restaurant')">
+          <span class="material-symbols-outlined niche-icon">restaurant</span>
+          <span class="niche-name">Restaurants & Cafes</span>
+        </div>
+
+        <div class="niche-card" onclick="selectNiche('hotel')">
+          <span class="material-symbols-outlined niche-icon">hotel</span>
+          <span class="niche-name">Hotels & Travel</span>
+        </div>
+
+        <div class="niche-card" onclick="selectNiche('pharmacy')">
+          <span class="material-symbols-outlined niche-icon">local_pharmacy</span>
+          <span class="niche-name">Medical Stores</span>
+        </div>
+
+        <div class="niche-card" onclick="selectNiche('custom')">
+          <span class="material-symbols-outlined niche-icon">store</span>
+          <span class="niche-name">Local Businesses</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Section Grid -->
+    <div class="main-grid">
+      <!-- Left: High-Converting Outreach Generator -->
+      <div class="card">
+        <div class="card-title">
+          <span class="material-symbols-outlined">send</span>
+          AI WhatsApp & Email Pitch Generator
+        </div>
+
+        <div class="form-group">
+          <label>Target Business Name:</label>
+          <input type="text" id="biz-name" class="form-control" placeholder="e.g. Smile Care Dental / City Gym" value="Smile Care Dental Clinic">
+        </div>
+
+        <div class="form-group">
+          <label>Owner / Manager Name (Optional):</label>
+          <input type="text" id="owner-name" class="form-control" placeholder="e.g. Dr. Sharma / Mr. Verma" value="Dr. Sharma">
+        </div>
+
+        <button class="btn-action" onclick="generatePitch()">
+          <span class="material-symbols-outlined">chat</span> Generate WhatsApp & Email Pitch
+        </button>
+
+        <div class="card-title" style="font-size: 14px; margin-top: 10px;">
+          <span class="material-symbols-outlined">description</span>
+          Generated Pitch Message
+        </div>
+        <div id="pitch-output" class="output-box">
+          [Select a niche above and click Generate]
+        </div>
+
+        <button class="btn-action" style="background: #25d366; color: white;" onclick="sendWhatsApp()">
+          <span class="material-symbols-outlined">chat</span> Send via WhatsApp
+        </button>
+      </div>
+
+      <!-- Right: Client Lead Tracker & Demo Portfolio Launcher -->
+      <div class="card">
+        <div class="card-title">
+          <span class="material-symbols-outlined">analytics</span>
+          Client Leads Pipeline Tracker
+        </div>
+
+        <table class="lead-table">
+          <thead>
+            <tr>
+              <th>Business Name</th>
+              <th>Niche</th>
+              <th>Status</th>
+              <th>Demo Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AK Dhaba Restaurant</td>
+              <td>Restaurant</td>
+              <td><span class="badge-status status-won">Won / Live</span></td>
+              <td><a href="/ak-dhaba" target="_blank" style="color: var(--accent-cyan);">View Demo</a></td>
+            </tr>
+            <tr>
+              <td>City Care Dental Clinic</td>
+              <td>Dentist</td>
+              <td><span class="badge-status status-contacted">Pitch Sent</span></td>
+              <td><a href="/portfolio" target="_blank" style="color: var(--accent-cyan);">View Proposal</a></td>
+            </tr>
+            <tr>
+              <td>Pulse Fitness Gym</td>
+              <td>Gym</td>
+              <td><span class="badge-status status-new">New Lead</span></td>
+              <td><a href="/portfolio" target="_blank" style="color: var(--accent-cyan);">View Proposal</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card-title" style="margin-top: 10px;">
+          <span class="material-symbols-outlined">lightbulb</span>
+          Top 3 Strategies to Win 5-10 Clients This Week
+        </div>
+
+        <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+          <p><strong>1. Send Live Working Demos First:</strong> Instead of saying "I can make a site", send them a working demo link (like AK Dhaba or 3D Explorer). It impresses them immediately!</p>
+          <br>
+          <p><strong>2. Bundle Website + Google Maps Optimization:</strong> Offer a complete package (Website + Google Business Profile Rank #1). Businesses love getting more local callers!</p>
+          <br>
+          <p><strong>3. Use Direct WhatsApp Outreach:</strong> Most local owners read WhatsApp within 5 minutes. Use the generated script to text local business numbers directly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentNiche = 'dentist';
+
+    function selectNiche(nicheKey) {
+      currentNiche = nicheKey;
+      document.querySelectorAll('.niche-card').forEach(c => c.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      if (nicheKey === 'dentist') {
+        document.getElementById('biz-name').value = 'Smile Care Dental Clinic';
+        document.getElementById('owner-name').value = 'Dr. Sharma';
+      } else if (nicheKey === 'gym') {
+        document.getElementById('biz-name').value = 'Pulse Fitness Gym';
+        document.getElementById('owner-name').value = 'Mr. Kapoor';
+      } else if (nicheKey === 'restaurant') {
+        document.getElementById('biz-name').value = 'Royal Punjabi Restaurant';
+        document.getElementById('owner-name').value = 'Mr. Singh';
+      } else if (nicheKey === 'hotel') {
+        document.getElementById('biz-name').value = 'Grand Horizon Hotel & Travels';
+        document.getElementById('owner-name').value = 'Manager';
+      } else if (nicheKey === 'pharmacy') {
+        document.getElementById('biz-name').value = 'City Health Medical Store';
+        document.getElementById('owner-name').value = 'Owner';
+      }
+      generatePitch();
+    }
+
+    function generatePitch() {
+      const biz = document.getElementById('biz-name').value || 'your business';
+      const owner = document.getElementById('owner-name').value || 'Sir/Ma\'am';
+      const output = document.getElementById('pitch-output');
+
+      let pitchText = '';
+
+      if (currentNiche === 'dentist') {
+        pitchText = `Hello ${owner},\n\nI noticed ${biz} on Google. I am a web developer specializing in creating high-converting websites and Google Maps booking portals for dental clinics.\n\nA modern website will allow patients to book appointments online 24/7 and boost your Google Maps ranking.\n\nI have prepared a live working demo you can see here: http://localhost:3000/portfolio\n\nWould you be open to a quick 2-minute chat about getting more patients online?`;
+      } else if (currentNiche === 'gym') {
+        pitchText = `Hi ${owner}!\n\nI noticed ${biz} has great workouts! I build modern, mobile-friendly websites for gyms and fitness centers featuring online membership signups, class schedules, and trainer profiles.\n\nCheck out a live demo showcase of my work here: http://localhost:3000/portfolio\n\nLet me know if you would like a custom demo for ${biz}!`;
+      } else if (currentNiche === 'restaurant') {
+        pitchText = `Hello ${owner},\n\nI created a high-converting online menu & table booking website specifically for restaurants (like AK Dhaba!).\n\nSee the live restaurant website demo here: http://localhost:3000/ak-dhaba\n\nI can customize this exact high-end website for ${biz} within 48 hours to help you get more online orders & table reservations!`;
+      } else {
+        pitchText = `Hello ${owner},\n\nI am a local web developer helping businesses like ${biz} get more customers from Google search and WhatsApp.\n\nI can design a modern, fast, mobile-responsive website for ${biz} along with Google Business Profile ranking optimization.\n\nSee live samples of my work: http://localhost:3000/portfolio\n\nWhen would be a good time for a quick 2-minute chat?`;
+      }
+
+      output.innerText = pitchText;
+    }
+
+    function sendWhatsApp() {
+      const text = encodeURIComponent(document.getElementById('pitch-output').innerText);
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
+    // Initial Pitch
+    window.addEventListener('DOMContentLoaded', () => {
+      generatePitch();
+    });
+  </script>
+</body>
+</html>
