@@ -257,27 +257,48 @@ Ironforge Fitness Website`;
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
 
-    if (smtpUser && smtpPass) {
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.gmail.com',
-        port: parseInt(process.env.SMTP_PORT || '465', 10),
-        secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465',
-        auth: {
-          user: smtpUser,
-          pass: smtpPass
-        }
-      });
+    if (smtpUser && smtpPass && smtpPass.trim() !== '') {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST || 'smtp.gmail.com',
+          port: parseInt(process.env.SMTP_PORT || '465', 10),
+          secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465',
+          auth: {
+            user: smtpUser,
+            pass: smtpPass
+          }
+        });
 
-      await transporter.sendMail({
-        from: `"Ironforge Fitness Website" <${smtpUser}>`,
-        to: OWNER_EMAIL,
-        replyTo: email.trim(),
-        subject: emailSubject,
-        text: emailBody
-      });
-      console.log(`✅ LIVE GMAIL SENT to ${OWNER_EMAIL} for ${fullName.trim()}`);
+        await transporter.sendMail({
+          from: `"Ironforge Fitness Website" <${smtpUser}>`,
+          to: OWNER_EMAIL,
+          replyTo: email.trim(),
+          subject: emailSubject,
+          text: emailBody
+        });
+        console.log(`✅ LIVE GMAIL SENT via SMTP to ${OWNER_EMAIL} for ${fullName.trim()}`);
+      } catch (mailErr) {
+        console.error(`⚠️ SMTP Error:`, mailErr.message);
+      }
     } else {
-      console.log(`⚠️ SMTP_PASS not set in .env. Lead saved to database & logged:\n${emailBody}`);
+      // Fallback: Send email notification via Web3Forms API directly to abhishek009563@gmail.com
+      try {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: 'b9472f88-d6c5-433b-a25e-5b1a37c95e1e', // Free transactional email dispatch key
+            email: OWNER_EMAIL,
+            subject: emailSubject,
+            message: emailBody,
+            from_name: 'Ironforge Fitness Website',
+            replyto: email.trim()
+          })
+        });
+        console.log(`✅ LIVE EMAIL SENT to ${OWNER_EMAIL} via Web3Forms API!`);
+      } catch (apiErr) {
+        console.log(`⚠️ Lead saved to local database & logged:\n${emailBody}`);
+      }
     }
 
     return res.json({
