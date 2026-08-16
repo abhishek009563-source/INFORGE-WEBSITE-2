@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRONFORGE FITNESS — Build Your Strongest Self | Delhi, India</title>
+  <meta name="description" content="IRONFORGE FITNESS is Delhi's premier strength & fitness gym. State-of-the-art equipment, certified personal trainers, group classes, & customized diet plans.">
+
+  <!-- Google Fonts: Outfit & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- STICKY NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="brand-logo">
+        <div class="brand-icon-box">
+          <span class="material-symbols-outlined">fitness_center</span>
+        </div>
+        <div class="brand-text">IRON<span>FORGE</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#membership" class="nav-link">Membership</a></li>
+        <li><a href="#why-us" class="nav-link">Why Us</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#location" class="nav-link">Location</a></li>
+      </ul>
+
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <button class="btn-nav-join" onclick="openJoinModal('Navbar CTA')">
+          <span class="material-symbols-outlined">bolt</span> JOIN NOW
+        </button>
+        <button class="mobile-hamburger" onclick="toggleMobileNav()">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="trust-indicator">
+        <span class="material-symbols-outlined" style="font-size: 18px;">bolt</span>
+        500+ MEMBERS • MODERN EQUIPMENT • EXPERT TRAINERS
+      </div>
+
+      <h1 class="hero-title">
+        BUILD YOUR<br><span>STRONGEST SELF.</span>
+      </h1>
+
+      <p class="hero-subheading">Train harder. Get stronger. Become better.</p>
+      
+      <p class="hero-supporting">
+        Premium equipment, certified expert trainers, and a high-energy motivating environment designed to help you crush your fitness goals.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn-hero-primary" onclick="openJoinModal('Hero Primary')">
+          <span class="material-symbols-outlined">card_membership</span> VIEW MEMBERSHIPS
+        </button>
+        <button class="btn-hero-secondary" onclick="openJoinModal('Hero Free Visit')">
+          <span class="material-symbols-outlined">calendar_month</span> BOOK A FREE VISIT
+        </button>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>SCROLL TO EXPLORE</span>
+        <span class="material-symbols-outlined">expand_more</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIMATED GYM STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Active Members</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Expert Trainers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Equipment Stations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT GYM SECTION -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80" alt="Ironforge Gym Training Floor">
+          <div class="about-badge">
+            <span class="material-symbols-outlined about-badge-icon">verified_user</span>
+            <div>
+              <div style="font-family: var(--font-heading); font-weight: 800; font-size: 18px;">PREMIER FACILITY</div>
+              <div style="font-size: 13px; color: var(--text-muted);">Certified Trainers & Top Gear</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-tag">// ABOUT IRONFORGE</div>
+          <h2 class="section-title">MORE THAN A GYM.<br>A STRENGTH COMMUNITY.</h2>
+          <p class="section-desc" style="margin-bottom: 24px;">
+            Ironforge Fitness was founded with a singular mission: to provide a world-class training facility where beginner lifters and seasoned athletes push their boundaries.
+          </p>
+          <p class="section-desc" style="margin-bottom: 28px;">
+            We combine heavy-duty strength equipment, dedicated functional cardio zones, clean locker spaces, and personalized nutrition guidance under one roof.
+          </p>
+
+          <div class="about-features">
+            <div class="feature-item"><span class="material-symbols-outlined">check_circle</span> Premium Equipment</div>
+            <div class="feature-item"><span class="material-symbols-outlined">check_circle</span> Certified Personal Trainers</div>
+            <div class="feature-item"><span class="material-symbols-outlined">check_circle</span> Clean & Hygienic Space</div>
+            <div class="feature-item"><span class="material-symbols-outlined">check_circle</span> Personalized Training</div>
+            <div class="feature-item"><span class="material-symbols-outlined">check_circle</span> Friendly Community</div>
+            <div class="feature-item"><span class="material-symbols-outlined">check_circle</span> Flexible Memberships</div>
+          </div>
+
+          <button class="btn-hero-primary" onclick="openJoinModal('About Section')">
+            <span class="material-symbols-outlined">arrow_forward</span> EXPLORE OUR GYM
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP PRICING SECTION -->
+  <section id="membership" class="pricing-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="section-tag">// MEMBERSHIP PLANS</div>
+        <h2 class="section-title">CHOOSE YOUR TRAINING PLAN</h2>
+        <p class="section-desc" style="margin: 0 auto;">Transparent pricing. No hidden fees. Start transforming your physique today.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan 1 -->
+        <div class="price-card">
+          <div class="plan-name">STARTER</div>
+          <div class="plan-price">₹1,499 <span>/ month</span></div>
+          <ul class="plan-features">
+            <li><span class="material-symbols-outlined">check</span> Full Gym Access</li>
+            <li><span class="material-symbols-outlined">check</span> Cardio & Weight Area</li>
+            <li><span class="material-symbols-outlined">check</span> Locker Room & Shower Access</li>
+            <li><span class="material-symbols-outlined">check</span> Basic Orientation Session</li>
+          </ul>
+          <button class="btn-hero-secondary" style="width: 100%; justify-content: center;" onclick="openJoinModal('Starter Plan - ₹1,499')">
+            SELECT STARTER
+          </button>
+        </div>
+
+        <!-- Plan 2 (Popular) -->
+        <div class="price-card popular">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="plan-name">PRO</div>
+          <div class="plan-price">₹2,499 <span>/ month</span></div>
+          <ul class="plan-features">
+            <li><span class="material-symbols-outlined">check</span> Everything in Starter</li>
+            <li><span class="material-symbols-outlined">check</span> All Group Classes Included</li>
+            <li><span class="material-symbols-outlined">check</span> 1-on-1 Personal Training Session</li>
+            <li><span class="material-symbols-outlined">check</span> Customized Diet Guidance</li>
+            <li><span class="material-symbols-outlined">check</span> Priority Support</li>
+          </ul>
+          <button class="btn-hero-primary" style="width: 100%; justify-content: center;" onclick="openJoinModal('PRO Plan - ₹2,499')">
+            SELECT PRO PLAN
+          </button>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="price-card">
+          <div class="plan-name">ELITE</div>
+          <div class="plan-price">₹4,999 <span>/ month</span></div>
+          <ul class="plan-features">
+            <li><span class="material-symbols-outlined">check</span> Everything in PRO Plan</li>
+            <li><span class="material-symbols-outlined">check</span> 4 PT Sessions per Month</li>
+            <li><span class="material-symbols-outlined">check</span> Customized Workout Plan</li>
+            <li><span class="material-symbols-outlined">check</span> Customized Diet & Macro Plan</li>
+            <li><span class="material-symbols-outlined">check</span> 24/7 VIP Support</li>
+          </ul>
+          <button class="btn-hero-secondary" style="width: 100%; justify-content: center;" onclick="openJoinModal('ELITE Plan - ₹4,999')">
+            SELECT ELITE
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why-us" class="why-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="section-tag">// THE IRONFORGE ADVANTAGE</div>
+        <h2 class="section-title">WHY TRAIN WITH US?</h2>
+        <p class="section-desc" style="margin: 0 auto;">Everything you need to hit personal records and stay consistent.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon-box"><span class="material-symbols-outlined">fitness_center</span></div>
+          <h3 class="why-title">Premium Equipment</h3>
+          <p class="why-desc">Heavy-duty power racks, Olympic barbells, calibrated plates, and ergonomic resistance machines.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box"><span class="material-symbols-outlined">sports_mma</span></div>
+          <h3 class="why-title">Expert Certified Trainers</h3>
+          <p class="why-desc">Certified strength coaches and trainers dedicated to perfecting your form and preventing injury.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box"><span class="material-symbols-outlined">local_fire_department</span></div>
+          <h3 class="why-title">Results-Focused Culture</h3>
+          <p class="why-desc">A serious, supportive environment focused on measurable muscle gain, strength, and endurance.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box"><span class="material-symbols-outlined">sanitizer</span></div>
+          <h3 class="why-title">Clean & Hygienic</h3>
+          <p class="why-desc">Sanitized workout stations, clean lockers, fresh air ventilation, and spotless showers.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box"><span class="material-symbols-outlined">groups</span></div>
+          <h3 class="why-title">Motivating Community</h3>
+          <p class="why-desc">Surround yourself with passionate fitness enthusiasts who keep you accountable every day.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box"><span class="material-symbols-outlined">schedule</span></div>
+          <h3 class="why-title">Flexible Operating Hours</h3>
+          <p class="why-desc">Open 7 days a week with early morning and late evening slots to fit your busy schedule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIDE GYM PHOTO GALLERY -->
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="section-tag">// INSIDE THE FORGE</div>
+        <h2 class="section-title">PHOTO GALLERY</h2>
+        <p class="section-desc" style="margin: 0 auto;">Take a visual tour of our training floor, lifting zones, and equipment.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Main Strength Training Floor">
+          <div class="gallery-overlay"><div class="gallery-title">Main Strength Floor</div></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80" alt="Free Weights Zone">
+          <div class="gallery-overlay"><div class="gallery-title">Free Weights Zone</div></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=600&q=80" alt="Cardio & Endurance Area">
+          <div class="gallery-overlay"><div class="gallery-title">Cardio & Endurance Area</div></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80" alt="Dumbbell & Barbell Racks">
+          <div class="gallery-overlay"><div class="gallery-title">Dumbbell Racks</div></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Personal Training Session">
+          <div class="gallery-overlay"><div class="gallery-title">Personal Training Zone</div></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80" alt="Functional Fitness Zone">
+          <div class="gallery-overlay"><div class="gallery-title">Functional Fitness Zone</div></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="HIIT & Group Classes">
+          <div class="gallery-overlay"><div class="gallery-title">HIIT Group Classes</div></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=1200&q=80')">
+          <img src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=600&q=80" alt="Heavy Power Squat Racks">
+          <div class="gallery-overlay"><div class="gallery-title">Power Racks & Squat Platforms</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER REVIEWS SECTION -->
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="section-tag">// TESTIMONIALS</div>
+        <h2 class="section-title">WHAT OUR MEMBERS SAY</h2>
+        <p class="section-desc" style="margin: 0 auto;">Real stories from real lifters who transformed their physiques at Ironforge Fitness.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Best gym in Delhi hands down! The powerlifting equipment is heavy duty and the trainers actually care about form. Gained 6kg muscle in 4 months."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" class="reviewer-img" alt="Rahul M.">
+            <div>
+              <div class="reviewer-name">Rahul M.</div>
+              <div class="reviewer-role">PRO Member (8 Months)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Super clean locker rooms and top-tier cardio machines. The personal training program helped me drop 12kg for my wedding!"</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" class="reviewer-img" alt="Arjun S.">
+            <div>
+              <div class="reviewer-name">Arjun S.</div>
+              <div class="reviewer-role">ELITE Member (1 Year)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"As a woman who loves lifting heavy, the community here is so welcoming and empowering. Clean facilities and great vibe!"</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" class="reviewer-img" alt="Neha S.">
+            <div>
+              <div class="reviewer-name">Neha S.</div>
+              <div class="reviewer-role">PRO Member (6 Months)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Great location, friendly staff, and the free pass visit convinced me right away. High energy music and excellent equipment."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=120&q=80" class="reviewer-img" alt="Karan M.">
+            <div>
+              <div class="reviewer-name">Karan M.</div>
+              <div class="reviewer-role">STARTER Member (3 Months)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION & CONTACT SECTION -->
+  <section id="location" class="contact-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="section-tag">// VISIT US</div>
+        <h2 class="section-title">LOCATION & ENQUIRY</h2>
+        <p class="section-desc" style="margin: 0 auto;">Drop by for a free visit pass or send us an enquiry online.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Location Details -->
+        <div class="contact-info-box">
+          <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--white); margin-bottom: 24px;">GYM HOURS & ADDRESS</h3>
+
+          <div class="info-row">
+            <div class="info-icon-box"><span class="material-symbols-outlined">location_on</span></div>
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Address</div>
+              <div style="font-size: 16px; font-weight: 600;">IRONFORGE FITNESS, Connaught Place / South Delhi, Delhi, India</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon-box"><span class="material-symbols-outlined">schedule</span></div>
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Opening Hours</div>
+              <div style="font-size: 15px; font-weight: 600;">Monday – Saturday: 6:00 AM – 10:00 PM</div>
+              <div style="font-size: 15px; font-weight: 600;">Sunday: 7:00 AM – 2:00 PM</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon-box"><span class="material-symbols-outlined">call</span></div>
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase;">Phone & WhatsApp</div>
+              <div style="font-size: 16px; font-weight: 600;">+91 98765 43210</div>
+            </div>
+          </div>
+
+          <button class="btn-hero-primary" style="width: 100%; justify-content: center;" onclick="alert('Google Maps Directions Demo')">
+            <span class="material-symbols-outlined">directions</span> GET DIRECTIONS
+          </button>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-card">
+          <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--white); margin-bottom: 8px;">READY TO START?</h3>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Your strongest version starts with one decision. Send an enquiry for a free visit pass.</p>
+
+          <form onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" class="form-control" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="3" placeholder="Message (e.g. Free Visit Pass / Membership Query)"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">SEND ENQUIRY</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DRAMATIC CTA -->
+  <section class="final-cta-section">
+    <div class="container" style="position: relative; z-index: 10;">
+      <div class="section-tag">// NO EXCUSES</div>
+      <h2 class="final-cta-title">STOP WAITING.<br>START TRAINING.</h2>
+      <p style="font-size: 18px; color: var(--metallic); margin-bottom: 32px;">Your goals won't achieve themselves.</p>
+
+      <div class="hero-buttons">
+        <button class="btn-hero-primary" onclick="openJoinModal('Final CTA')">
+          <span class="material-symbols-outlined">bolt</span> JOIN NOW
+        </button>
+        <a href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20joining%20Ironforge%20Fitness.%20I'd%20like%20to%20know%20more%20about%20the%20membership%20plans." target="_blank" class="btn-hero-secondary" style="background: #25d366; border-color: #25d366;">
+          <span class="material-symbols-outlined">chat</span> WHATSAPP US
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 16px;">
+            <div class="brand-icon-box"><span class="material-symbols-outlined">fitness_center</span></div>
+            <div class="brand-text">IRON<span>FORGE</span></div>
+          </div>
+          <p style="font-size: 14px; color: var(--text-muted); max-width: 320px;">Delhi's premier strength and fitness gym. Premium equipment, certified trainers, and serious results.</p>
+        </div>
+
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 16px; color: var(--white); margin-bottom: 16px;">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#membership">Membership Plans</a></li>
+            <li><a href="#gallery">Inside Gym</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 16px; color: var(--white); margin-bottom: 16px;">Opening Hours</h4>
+          <ul class="footer-links">
+            <li>Mon - Sat: 6:00 AM - 10:00 PM</li>
+            <li>Sunday: 7:00 AM - 2:00 PM</li>
+            <li>Open All 7 Days</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 16px; color: var(--white); margin-bottom: 16px;">Contact Developer</h4>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 6px;">📞 +91 98765 43210</p>
+          <p style="font-size: 14px; color: var(--red-accent); margin-bottom: 6px; font-weight: 700;">📧 abhishek009563@gmail.com</p>
+          <p style="font-size: 14px; color: var(--text-muted);">📍 Delhi, India</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; font-size: 13px; color: var(--text-muted); padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.06);">
+        © 2026 Ironforge Fitness. All rights reserved. | Recreated Commercial Gym Website
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/?text=Hi,%20I'm%20interested%20in%20joining%20Ironforge%20Fitness.%20I'd%20like%20to%20know%20more%20about%20the%20membership%20plans." target="_blank" class="btn-floating-whatsapp">
+    <span class="material-symbols-outlined">chat</span> Chat With Us
+  </a>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="btn-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <span class="material-symbols-outlined">arrow_upward</span>
+  </button>
+
+  <!-- IMAGE LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox-modal">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged Gym View">
+  </div>
+
+  <!-- SECURE GYM REGISTRATION MODAL -->
+  <div id="register-modal" class="lightbox-modal">
+    <div style="background: #141418; border: 2px solid var(--red-accent); border-radius: 24px; padding: 32px; max-width: 520px; width: 100%; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto;">
+      <button class="lightbox-close" onclick="closeRegisterModal()" style="top: 16px; right: 16px;">✕</button>
+      <h3 style="font-family: var(--font-heading); font-size: 26px; color: var(--white); margin-bottom: 4px;">IRONFORGE GYM REGISTRATION</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Complete your details to start your fitness journey.</p>
+
+      <form id="gym-register-form" onsubmit="handleGymRegister(event)">
+        <!-- Anti-Spam Honeypot Field -->
+        <input type="text" name="honeypot" style="display:none !important;" tabindex="-1" autocomplete="off">
+
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Full Name *</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Phone Number *</label>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="e.g. +91 98765 43210" required>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Email Address *</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="e.g. rahul@gmail.com" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Age *</label>
+            <input type="number" id="reg-age" min="10" max="100" class="form-control" placeholder="e.g. 24" required>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Gender *</label>
+            <select id="reg-gender" class="form-control" style="background: #000; color: #fff;">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Membership Plan *</label>
+            <select id="reg-membership" class="form-control" style="background: #000; color: #fff;">
+              <option value="Starter Plan - ₹1,499 / mo">Starter (₹1,499/mo)</option>
+              <option value="PRO Plan - ₹2,499 / mo" selected>PRO (₹2,499/mo - Popular)</option>
+              <option value="ELITE Plan - ₹4,999 / mo">ELITE (₹4,999/mo)</option>
+              <option value="Free Trial Pass Visit">Free Trial Visit Pass</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Preferred Start Date *</label>
+            <input type="date" id="reg-startdate" class="form-control" style="background: #000; color: #fff;" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--metallic); margin-bottom: 4px; display: block;">Message / Additional Information</label>
+          <textarea id="reg-message" class="form-control" rows="2" placeholder="Any fitness goals, medical conditions, or timing preferences..."></textarea>
+        </div>
+
+        <button type="submit" id="reg-btn-submit" class="btn-submit" style="margin-top: 8px;">SUBMIT REGISTRATION</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Engine -->
+  <script src="script.js"></script>
+</body>
+</html>

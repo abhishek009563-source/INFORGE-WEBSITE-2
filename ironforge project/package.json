@@ -1,0 +1,18 @@
+{
+  "name": "ironforge-fitness-website",
+  "version": "1.0.0",
+  "description": "Ironforge Fitness commercial website - Delhi, India",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "gym",
+    "fitness",
+    "ironforge",
+    "website",
+    "delhi"
+  ],
+  "author": "",
+  "license": "ISC"
+}

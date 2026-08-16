@@ -178,6 +178,9 @@ app.get(['/', '/ironforge', '/gym', '/ironforge-fitness'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'ironforge.html'));
 });
 
+// Recreated Ironforge Project Route
+app.use('/ironforge-project', express.static(path.join(__dirname, 'ironforge project')));
+
 // Hairable Salon Commercial Website Route
 app.get(['/hairable', '/hairable-salon'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'hairable.html'));
