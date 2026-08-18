@@ -349,6 +349,12 @@ app.get(['/', '/ironforge', '/gym', '/ironforge-fitness'], (req, res) => {
 // Recreated Ironforge Project Route
 app.use('/ironforge-project', express.static(path.join(__dirname, 'ironforge project')));
 
+// Echoes Web3 Story Platform Route
+app.use('/echoes', express.static(path.join(__dirname, 'echoes-story-platform', 'dist')));
+app.get('/echoes*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'echoes-story-platform', 'dist', 'index.html'));
+});
+
 // Hairable Salon Commercial Website Route
 app.get(['/hairable', '/hairable-salon'], (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'hairable.html'));
