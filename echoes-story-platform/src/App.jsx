@@ -20,6 +20,7 @@ import DashboardPage from './pages/DashboardPage';
 import MyStoriesPage from './pages/MyStoriesPage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Scroll to top component on route change
 const ScrollToTop = () => {
@@ -57,7 +58,7 @@ const AppContent = () => {
           <Route path="/stories" element={<MyStoriesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="*" element={<LandingPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
 

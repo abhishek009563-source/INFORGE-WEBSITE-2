@@ -1,9 +1,9 @@
-// Mock dataset for Echoes Web3 Audio Storytelling Platform
+// Authentic Mock Dataset for Echoes Web3 Audio Storytelling Platform
 
 export const CATEGORIES = [
   { id: 'all', name: 'All Categories', icon: 'Sparkles', count: 12 },
   { id: 'life-lessons', name: 'Life Lessons', icon: 'Compass', count: 4, description: 'Wisdom gained through personal experience' },
-  { id: 'founder-stories', name: 'Founder Stories', icon: 'Rocket', count: 3, description: 'Behind-the-scenes of building startups' },
+  { id: 'founder-stories', name: 'Founder Stories', icon: 'Rocket', count: 3, description: 'Behind-the-scenes of building ventures' },
   { id: 'travel', name: 'Travel & Adventure', icon: 'Globe', count: 2, description: 'Journeys that expanded worldviews' },
   { id: 'relationships', name: 'Relationships', icon: 'Heart', count: 2, description: 'Bonding, heartbreak, and human connection' },
   { id: 'career', name: 'Career & Ambition', icon: 'Briefcase', count: 2, description: 'Pivots, triumphs, and workplace lessons' },
@@ -17,19 +17,19 @@ export const MOCK_STORIES = [
     id: 'story-1',
     title: 'Lessons I Learned at 20 That Saved My 30s',
     tagline: 'Reflections on financial independence, choosing mentors, and embracing failure early.',
-    description: 'Looking back at my 20s, I made every classic mistake—maxing out credit cards, chasing vanity metrics in my career, and ignoring my health. In this 7-minute audio story, I share the 4 hard truths that changed my trajectory before turning 30.',
+    description: 'Looking back at my 20s, I made classic mistakes—maxing out credit cards, chasing vanity metrics, and ignoring my health. In this 7-minute audio story, I share the 4 hard truths that changed my trajectory before turning 30.',
     category: 'Life Lessons',
     categoryId: 'life-lessons',
     duration: '07:24',
     durationSeconds: 444,
     audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=ambient-piano-amp-strings-10711.mp3',
-    coverImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1200&q=80',
     creator: {
       id: 'creator-alex',
       name: 'Alex Vance',
       handle: '@alexvance',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-      bio: 'Serial storyteller, Web3 creator, & podcaster sharing life wisdom on-chain.',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+      bio: 'Storyteller, independent podcaster, and voice archivist sharing life wisdom.',
       verified: true,
       followersCount: 1420
     },
@@ -45,29 +45,29 @@ export const MOCK_STORIES = [
     isTrending: true,
     isFeatured: true,
     timeline: [
-      { event: 'Created & Recorded', date: 'Aug 10, 2026', desc: 'Audio recorded and metadata attached on Echoes Studio' },
-      { event: 'Launched Token Edition', date: 'Aug 10, 2026', desc: '100 Digital Collectible Story Tokens created on Solana' },
+      { event: 'Recorded & Archived', date: 'Aug 10, 2026', desc: 'Audio recorded and metadata attached on Echoes Studio' },
+      { event: 'Minted Digital Edition', date: 'Aug 10, 2026', desc: '100 Collectible Story Tokens minted on Solana' },
       { event: 'First Collector', date: 'Aug 11, 2026', desc: 'Collected by @solana_collector for 0.45 SOL' },
-      { event: 'Recent Trade', date: '2 hours ago', desc: 'Secondary sale for 0.48 SOL (0.024 SOL Royalty paid to creator)' }
+      { event: 'Secondary Trade', date: '2 hours ago', desc: 'Secondary sale for 0.48 SOL (0.024 SOL Royalty paid to creator)' }
     ]
   },
   {
     id: 'story-2',
     title: 'My First Startup Failed. Here Is What I Built Next.',
-    tagline: 'How losing $120k in my first SaaS company became my greatest product lesson.',
-    description: 'In 2023, my co-founder and I shut down our first software company after 18 months of zero traction. We were devastated, but the lessons we learned about customer discovery allowed us to build our second company to $1M ARR in 10 months.',
+    tagline: 'How losing $120k in my first software venture became my greatest product lesson.',
+    description: 'In 2023, my co-founder and I shut down our first software company after 18 months of zero traction. We were devastated, but the lessons we learned about listening to real users allowed us to rebuild stronger.',
     category: 'Founder Stories',
     categoryId: 'founder-stories',
     duration: '11:15',
     durationSeconds: 675,
     audioUrl: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a7373f.mp3?filename=inspiring-cinematic-ambient-116199.mp3',
-    coverImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
     creator: {
       id: 'creator-elena',
       name: 'Elena Rostova',
       handle: '@elena_builds',
-      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
-      bio: 'Tech founder, investor, and builder exploring the intersection of audio and crypto.',
+      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
+      bio: 'Product builder and audio creator exploring digital ownership for voice.',
       verified: true,
       followersCount: 3890
     },
@@ -83,29 +83,29 @@ export const MOCK_STORIES = [
     isTrending: true,
     isFeatured: true,
     timeline: [
-      { event: 'Created & Recorded', date: 'Aug 04, 2026', desc: 'Recorded live in San Francisco founder lab' },
-      { event: 'Launched Token Edition', date: 'Aug 04, 2026', desc: '150 Digital Story Tokens launched on Solana' },
+      { event: 'Recorded & Archived', date: 'Aug 04, 2026', desc: 'Recorded live in San Francisco studio' },
+      { event: 'Minted Digital Edition', date: 'Aug 04, 2026', desc: '150 Collectible Story Tokens minted on Solana' },
       { event: 'First Collector', date: 'Aug 04, 2026', desc: 'Collected by @venture_dao for 0.80 SOL' },
-      { event: 'Recent Trade', date: '4 hours ago', desc: 'Secondary sale for 0.92 SOL (0.069 SOL Royalty to Elena)' }
+      { event: 'Secondary Trade', date: '4 hours ago', desc: 'Secondary sale for 0.92 SOL (0.069 SOL Royalty to Elena)' }
     ]
   },
   {
     id: 'story-3',
     title: 'The Solo Trip Across Japan That Fixed My Burnout',
-    tagline: '30 days in Kyoto, Hokkaido, and rural villages with no phone notifications.',
-    description: 'After 5 years of intense tech work in London, I was completely drained. I booked a one-way ticket to Osaka with a backpack and a microphone. This audio diary captures the quiet temples, night trains, and random encounters that restored my peace.',
+    tagline: '30 days in Kyoto, Hokkaido, and mountain villages with no phone notifications.',
+    description: 'After 5 years of intense tech work, I was completely drained. I booked a one-way ticket to Osaka with a backpack and a microphone. This audio diary captures the quiet temples, night trains, and random encounters that restored my peace.',
     category: 'Travel',
     categoryId: 'travel',
     duration: '09:40',
     durationSeconds: 580,
     audioUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=soft-rain-ambient-111154.mp3',
-    coverImage: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1000&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80',
     creator: {
       id: 'creator-kenji',
       name: 'Kenji Takahashi',
       handle: '@kenji_audio',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      bio: 'Audio field recordist, travel photographer, and minimalist living between Tokyo & Europe.',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
+      bio: 'Audio field recordist and travel writer documenting quiet human moments.',
       verified: true,
       followersCount: 2150
     },
@@ -121,28 +121,28 @@ export const MOCK_STORIES = [
     isTrending: false,
     isFeatured: true,
     timeline: [
-      { event: 'Created & Recorded', date: 'Aug 01, 2026', desc: 'Recorded in Kyoto bamboo grove studio' },
-      { event: 'Launched Token Edition', date: 'Aug 01, 2026', desc: '100 Digital Story Tokens launched on Solana' },
-      { event: 'Recent Trade', date: '1 day ago', desc: 'Collected by @wanderer_sol for 0.38 SOL' }
+      { event: 'Recorded & Archived', date: 'Aug 01, 2026', desc: 'Recorded in Kyoto bamboo grove' },
+      { event: 'Minted Digital Edition', date: 'Aug 01, 2026', desc: '100 Digital Story Tokens launched on Solana' },
+      { event: 'Secondary Trade', date: '1 day ago', desc: 'Collected by @wanderer_sol for 0.38 SOL' }
     ]
   },
   {
     id: 'story-4',
     title: 'A Letter to My Younger Self on Imposter Syndrome',
-    tagline: 'Why walking into room where you feel unqualified is actually a superpower.',
+    tagline: 'Why walking into a room where you feel unqualified is actually a growth opportunity.',
     description: 'I spent years feeling like I was pretending to belong in boardrooms and keynotes. This is the heartfelt letter I wish someone had handed me when I started my career at 22.',
     category: 'Motivation',
     categoryId: 'motivation',
     duration: '05:48',
     durationSeconds: 348,
     audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=ambient-piano-amp-strings-10711.mp3',
-    coverImage: 'https://images.unsplash.com/photo-1499209974431-9dac3ada00d7?auto=format&fit=crop&w=1000&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80',
     creator: {
       id: 'creator-maya',
       name: 'Maya Lin',
       handle: '@mayaspeaks',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-      bio: 'Keynote speaker, executive coach, & audio essayist.',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+      bio: 'Speaker, audio essayist, and mentor helping creators find their voice.',
       verified: true,
       followersCount: 5100
     },
@@ -158,27 +158,27 @@ export const MOCK_STORIES = [
     isTrending: true,
     isFeatured: false,
     timeline: [
-      { event: 'Created & Recorded', date: 'Jul 28, 2026', desc: 'Recorded on Echoes Web Studio' },
-      { event: 'Launched Token Edition', date: 'Jul 28, 2026', desc: '120 Digital Collectible Tokens minted' }
+      { event: 'Recorded & Archived', date: 'Jul 28, 2026', desc: 'Recorded on Echoes Web Studio' },
+      { event: 'Minted Digital Edition', date: 'Jul 28, 2026', desc: '120 Digital Collectible Tokens minted' }
     ]
   },
   {
     id: 'story-5',
     title: 'The Midnight Call That Changed Our Family Forever',
-    tagline: 'A story of immigration, resilience, and the sacrifice of my grandparents.',
-    description: 'In 1978, my grandfather made a split-second decision to board a ship across the Atlantic with two suitcases and no English. This is the oral history of our family coming together against all odds.',
+    tagline: 'A story of migration, resilience, and the quiet sacrifices of my grandparents.',
+    description: 'In 1978, my grandfather made a decision to board a ship across the Atlantic with two suitcases and no English. This is the oral history of our family coming together against all odds.',
     category: 'Family',
     categoryId: 'family',
     duration: '14:20',
     durationSeconds: 860,
     audioUrl: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a7373f.mp3?filename=inspiring-cinematic-ambient-116199.mp3',
-    coverImage: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1000&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80',
     creator: {
       id: 'creator-marcus',
       name: 'Marcus Sterling',
       handle: '@marcus_voice',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-      bio: 'Documentary storyteller, audio archivist, & history enthusiast.',
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80',
+      bio: 'Documentary storyteller and audio archivist preserving family histories.',
       verified: true,
       followersCount: 1840
     },
@@ -194,26 +194,26 @@ export const MOCK_STORIES = [
     isTrending: false,
     isFeatured: false,
     timeline: [
-      { event: 'Created & Recorded', date: 'Jul 20, 2026', desc: 'Archived from family tape recordings' }
+      { event: 'Recorded & Archived', date: 'Jul 20, 2026', desc: 'Archived from family tape recordings' }
     ]
   },
   {
     id: 'story-6',
     title: 'Leaving Corporate Tech to Build in Web3 Audio',
-    tagline: 'Why I walked away from a senior manager salary to create decentralized voice tools.',
-    description: 'Big Tech platforms extract 100% of value from personal stories while offering creators crumbs. Here is why I believe voice is the next frontier of decentralized digital ownership.',
+    tagline: 'Why I walked away from a comfortable salary to create voice preservation tools.',
+    description: 'Centralized platforms profit off personal stories while giving creators pennies. Here is why I believe voice is the most intimate form of digital heritage.',
     category: 'Career',
     categoryId: 'career',
     duration: '08:12',
     durationSeconds: 492,
     audioUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=soft-rain-ambient-111154.mp3',
-    coverImage: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80',
     creator: {
       id: 'creator-alex',
       name: 'Alex Vance',
       handle: '@alexvance',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-      bio: 'Serial storyteller, Web3 creator, & podcaster sharing life wisdom on-chain.',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+      bio: 'Storyteller, independent podcaster, and voice archivist sharing life wisdom.',
       verified: true,
       followersCount: 1420
     },
@@ -229,7 +229,7 @@ export const MOCK_STORIES = [
     isTrending: false,
     isFeatured: false,
     timeline: [
-      { event: 'Created & Recorded', date: 'Jul 15, 2026', desc: 'Recorded on Echoes Studio' }
+      { event: 'Recorded & Archived', date: 'Jul 15, 2026', desc: 'Recorded on Echoes Studio' }
     ]
   }
 ];
@@ -244,26 +244,26 @@ export const DEMO_STATS = [
 export const HOW_IT_WORKS_STEPS = [
   {
     step: '01',
-    title: 'Record',
-    desc: 'Capture your personal story or audio memory using your phone or browser mic. No studio gear or video required—your voice is enough.',
+    title: 'Record Your Story',
+    desc: 'Speak naturally using your microphone. Share life lessons, family memoirs, or field audio without studio pressure.',
     icon: 'Mic'
   },
   {
     step: '02',
-    title: 'Create',
-    desc: 'Add a cover image, title, category, and description to craft a permanent digital story page for your narrative.',
+    title: 'Craft Your Archive',
+    desc: 'Add a cover photograph, title, and description to create a dedicated digital page for your audio memoir.',
     icon: 'Sparkles'
   },
   {
     step: '03',
-    title: 'Launch',
-    desc: 'Turn your story into a digital story token on Solana. Listeners and collectors can purchase limited editions.',
+    title: 'Mint on Solana',
+    desc: 'Preserve your story as a digital collectible token on Solana. Listeners can collect limited editions to support your voice.',
     icon: 'Rocket'
   },
   {
     step: '04',
-    title: 'Earn',
-    desc: 'Receive perpetual creator royalties whenever your story tokens are traded on the secondary marketplace.',
+    title: 'Earn Royalties',
+    desc: 'Receive perpetual creator royalties whenever your story tokens are exchanged on secondary marketplaces.',
     icon: 'Coins'
   }
 ];
@@ -272,14 +272,14 @@ export const CURRENT_USER = {
   id: 'current-user-001',
   name: 'Samira Chen',
   handle: '@samirachen',
-  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-  coverImage: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
-  bio: 'Audio enthusiast, product designer, and storytelling pioneer. Documenting my journey in Web3 voice technologies.',
+  avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80',
+  coverImage: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1200&q=80',
+  bio: 'Audio enthusiast, product designer, and voice archivist documenting life stories on-chain.',
   walletAddress: '7xKX...89Fn',
   fullWalletAddress: '7xKXaP9Qz3MvL2R8W9Fn4J1T6B5C',
   balanceSOL: 14.85,
   verified: true,
-  storiesCount: 4,
+  storiesCount: 3,
   collectorsCount: 128,
   totalRoyaltiesSOL: 6.42,
   totalViews: 8940,
@@ -287,7 +287,7 @@ export const CURRENT_USER = {
     {
       id: 'my-story-1',
       title: 'Designing for Human Emotion in Digital Products',
-      coverImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+      coverImage: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80',
       duration: '06:18',
       plays: 1420,
       collectors: 42,
@@ -299,7 +299,7 @@ export const CURRENT_USER = {
     {
       id: 'my-story-2',
       title: 'Why Audio is the Most Intimate Social Medium',
-      coverImage: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=800&q=80',
+      coverImage: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80',
       duration: '09:05',
       plays: 2890,
       collectors: 68,
@@ -311,7 +311,7 @@ export const CURRENT_USER = {
     {
       id: 'my-story-3',
       title: 'Building My First Decentralized App at 24',
-      coverImage: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+      coverImage: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
       duration: '04:45',
       plays: 940,
       collectors: 18,
@@ -324,7 +324,7 @@ export const CURRENT_USER = {
 };
 
 export const MOCK_WALLETS = [
-  { id: 'phantom', name: 'Phantom', icon: 'Ghost', popular: true, installed: true, desc: 'Solana non-custodial wallet' },
-  { id: 'solflare', name: 'Solflare', icon: 'Flame', popular: false, installed: true, desc: 'Secure Solana web wallet' },
-  { id: 'backpack', name: 'Backpack', icon: 'Backpack', popular: false, installed: true, desc: 'Next-gen xNFT & Solana wallet' }
+  { id: 'phantom', name: 'Phantom [Demo]', icon: 'Ghost', popular: true, installed: true, desc: 'Simulated Solana Web3 wallet' },
+  { id: 'solflare', name: 'Solflare [Demo]', icon: 'Flame', popular: false, installed: true, desc: 'Simulated Solana web wallet' },
+  { id: 'backpack', name: 'Backpack [Demo]', icon: 'Backpack', popular: false, installed: true, desc: 'Simulated xNFT wallet' }
 ];
