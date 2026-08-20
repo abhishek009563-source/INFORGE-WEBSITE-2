@@ -51,13 +51,22 @@ const AppContent = () => {
       <main className="flex-1 pb-28">
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/echoes" element={<LandingPage />} />
           <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/echoes/explore" element={<ExplorePage />} />
           <Route path="/story/:id" element={<StoryDetailPage />} />
+          <Route path="/echoes/story/:id" element={<StoryDetailPage />} />
+          <Route path="/echoes/:id" element={<StoryDetailPage />} />
           <Route path="/create" element={<CreatePage />} />
+          <Route path="/echoes/create" element={<CreatePage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/echoes/dashboard" element={<DashboardPage />} />
           <Route path="/stories" element={<MyStoriesPage />} />
+          <Route path="/echoes/stories" element={<MyStoriesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/echoes/profile" element={<ProfilePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/echoes/about" element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

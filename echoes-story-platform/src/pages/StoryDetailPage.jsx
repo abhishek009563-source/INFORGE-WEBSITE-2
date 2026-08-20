@@ -7,6 +7,7 @@ import { useWallet } from '../context/WalletContext';
 import { useToast } from '../context/ToastContext';
 import AudioPlayerInline from '../components/story/AudioPlayerInline';
 import DemoBadge from '../components/common/DemoBadge';
+import NotFoundPage from './NotFoundPage';
 
 const StoryDetailPage = () => {
   const { id } = useParams();
@@ -14,7 +15,11 @@ const StoryDetailPage = () => {
   const { showToast } = useToast();
   const { isWalletConnected, openWalletModal } = useWallet();
 
-  const story = MOCK_STORIES.find((s) => s.id === id) || MOCK_STORIES[0];
+  const story = MOCK_STORIES.find((s) => s.id === id);
+
+  if (!story) {
+    return <NotFoundPage />;
+  }
   const [isCollectModalOpen, setIsCollectModalOpen] = useState(false);
   const [isCollected, setIsCollected] = useState(false);
 
